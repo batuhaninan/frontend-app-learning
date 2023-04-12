@@ -36,7 +36,7 @@ import CourseRecommendations from './CourseRecommendations';
 
 const LINKEDIN_BLUE = '#2867B2';
 
-const CourseCelebration = ({ intl }) => {
+function CourseCelebration({ intl }) {
   const wideScreen = useWindowSize().width >= breakpoints.medium.minWidth;
   const { courseId } = useSelector(state => state.courseware);
   const dispatch = useDispatch();
@@ -362,7 +362,7 @@ const CourseCelebration = ({ intl }) => {
       </div>
     </>
   );
-};
+}
 
 CourseCelebration.propTypes = {
   intl: intlShape.isRequired,

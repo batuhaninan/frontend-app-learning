@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 
 import messages from './messages';
 
-const FormattedPricing = (props) => {
+function FormattedPricing(props) {
   const {
     inline,
     intl,
@@ -57,7 +57,7 @@ const FormattedPricing = (props) => {
       </span>
     </>
   );
-};
+}
 
 FormattedPricing.defaultProps = {
   inline: false,

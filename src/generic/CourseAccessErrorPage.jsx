@@ -12,14 +12,13 @@ import { LOADED, LOADING } from '../course-home/data/slice';
 import PageLoading from './PageLoading';
 import messages from '../tab-page/messages';
 
-const CourseAccessErrorPage = ({ intl }) => {
+function CourseAccessErrorPage({ intl }) {
   const { courseId } = useParams();
 
   const dispatch = useDispatch();
   const activeEnterpriseAlert = useActiveEnterpriseAlert(courseId);
   useEffect(() => {
     dispatch(fetchDiscussionTab(courseId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
   const {
@@ -55,7 +54,7 @@ const CourseAccessErrorPage = ({ intl }) => {
       <Footer />
     </>
   );
-};
+}
 
 CourseAccessErrorPage.propTypes = {
   intl: intlShape.isRequired,

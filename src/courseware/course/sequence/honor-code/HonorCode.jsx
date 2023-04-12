@@ -10,7 +10,7 @@ import { useModel } from '../../../../generic/model-store';
 import { saveIntegritySignature } from '../../../data';
 import messages from './messages';
 
-const HonorCode = ({ intl, courseId }) => {
+function HonorCode({ intl, courseId }) {
   const dispatch = useDispatch();
   const {
     isMasquerading,
@@ -63,7 +63,7 @@ const HonorCode = ({ intl, courseId }) => {
       </ActionRow>
     </Alert>
   );
-};
+}
 
 HonorCode.propTypes = {
   intl: intlShape.isRequired,

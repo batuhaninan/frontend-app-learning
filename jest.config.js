@@ -9,6 +9,4 @@ module.exports = createConfig('jest', {
     'src/i18n',
     'src/.*\\.exp\\..*',
   ],
-  testTimeout: 30000,
-  testEnvironment: 'jsdom'
 });

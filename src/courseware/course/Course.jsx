@@ -18,7 +18,10 @@ import SidebarTriggers from './sidebar/SidebarTriggers';
 import { useModel } from '../../generic/model-store';
 import { getSessionStorage, setSessionStorage } from '../../data/sessionStorage';
 
-const Course = ({
+/** [MM-P2P] Experiment */
+import { initCoursewareMMP2P, MMP2PBlockModal } from '../../experiments/mm-p2p';
+
+function Course({
   courseId,
   sequenceId,
   unitId,
@@ -26,7 +29,7 @@ const Course = ({
   previousSequenceHandler,
   unitNavigationHandler,
   windowWidth,
-}) => {
+}) {
   const course = useModel('coursewareMeta', courseId);
   const {
     celebrations,
@@ -66,6 +69,9 @@ const Course = ({
     }
   }
 
+  /** [MM-P2P] Experiment */
+  const MMP2P = initCoursewareMMP2P(courseId, sequenceId, unitId);
+
   useEffect(() => {
     const celebrateFirstSection = celebrations && celebrations.firstSection;
     setFirstSectionCelebrationOpen(shouldCelebrateOnSectionLoad(
@@ -89,6 +95,8 @@ const Course = ({
           sequenceId={sequenceId}
           isStaff={isStaff}
           unitId={unitId}
+          //* * [MM-P2P] Experiment */
+          mmp2p={MMP2P}
         />
         {shouldDisplayTriggers && (
           <SidebarTriggers />
@@ -103,6 +111,8 @@ const Course = ({
         unitNavigationHandler={unitNavigationHandler}
         nextSequenceHandler={nextSequenceHandler}
         previousSequenceHandler={previousSequenceHandler}
+        //* * [MM-P2P] Experiment */
+        mmp2p={MMP2P}
       />
       <CelebrationModal
         courseId={courseId}
@@ -116,9 +126,11 @@ const Course = ({
         onClose={() => setWeeklyGoalCelebrationOpen(false)}
       />
       <ContentTools course={course} />
+      { /** [MM-P2P] Experiment */ }
+      { MMP2P.meta.modalLock && <MMP2PBlockModal options={MMP2P} /> }
     </SidebarProvider>
   );
-};
+}
 
 Course.propTypes = {
   courseId: PropTypes.string,
@@ -136,7 +148,7 @@ Course.defaultProps = {
   unitId: null,
 };
 
-const CourseWrapper = (props) => {
+function CourseWrapper(props) {
   // useWindowSize initially returns an undefined width intentionally at first.
   // See https://www.joshwcomeau.com/react/the-perils-of-rehydration/ for why.
   // But <Course> has some tricky window-size-dependent, session-storage-setting logic and React would yell at us if
@@ -148,6 +160,6 @@ const CourseWrapper = (props) => {
   }
 
   return <Course {...props} windowWidth={windowWidth} />;
-};
+}
 
 export default CourseWrapper;

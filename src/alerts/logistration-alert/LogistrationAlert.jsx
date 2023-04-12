@@ -7,7 +7,7 @@ import { WarningFilled } from '@edx/paragon/icons';
 
 import genericMessages from '../../generic/messages';
 
-const LogistrationAlert = ({ intl }) => {
+function LogistrationAlert({ intl }) {
   const signIn = (
     <Hyperlink
       style={{ textDecoration: 'underline' }}
@@ -41,7 +41,7 @@ const LogistrationAlert = ({ intl }) => {
       />
     </Alert>
   );
-};
+}
 
 LogistrationAlert.propTypes = {
   intl: intlShape.isRequired,

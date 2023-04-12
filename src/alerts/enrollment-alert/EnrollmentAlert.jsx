@@ -11,7 +11,7 @@ import { useModel } from '../../generic/model-store';
 import messages from './messages';
 import useEnrollClickHandler from './clickHook';
 
-const EnrollmentAlert = ({ intl, payload }) => {
+function EnrollmentAlert({ intl, payload }) {
   const {
     canEnroll,
     courseId,
@@ -55,7 +55,7 @@ const EnrollmentAlert = ({ intl, payload }) => {
       </div>
     </Alert>
   );
-};
+}
 
 EnrollmentAlert.propTypes = {
   intl: intlShape.isRequired,

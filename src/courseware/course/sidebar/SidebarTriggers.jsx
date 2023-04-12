@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import SidebarContext from './SidebarContext';
 import { SIDEBAR_ORDER, SIDEBARS } from './sidebars';
 
-const SidebarTriggers = () => {
+function SidebarTriggers() {
   const {
     toggleSidebar,
     currentSidebar,
@@ -25,7 +25,7 @@ const SidebarTriggers = () => {
       })}
     </div>
   );
-};
+}
 
 SidebarTriggers.propTypes = {};
 

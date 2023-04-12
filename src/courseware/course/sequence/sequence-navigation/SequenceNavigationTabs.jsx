@@ -5,9 +5,9 @@ import UnitButton from './UnitButton';
 import SequenceNavigationDropdown from './SequenceNavigationDropdown';
 import useIndexOfLastVisibleChild from '../../../../generic/tabs/useIndexOfLastVisibleChild';
 
-const SequenceNavigationTabs = ({
+export default function SequenceNavigationTabs({
   unitIds, unitId, showCompletion, onNavigate,
-}) => {
+}) {
   const [
     indexOfLastVisibleChild,
     containerRef,
@@ -43,7 +43,7 @@ const SequenceNavigationTabs = ({
       )}
     </div>
   );
-};
+}
 
 SequenceNavigationTabs.propTypes = {
   unitId: PropTypes.string.isRequired,
@@ -51,5 +51,3 @@ SequenceNavigationTabs.propTypes = {
   showCompletion: PropTypes.bool.isRequired,
   unitIds: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
-
-export default SequenceNavigationTabs;

@@ -6,7 +6,7 @@ import { Button, Hyperlink } from '@edx/paragon';
 import messages from './messages';
 import { ReactComponent as UnsubscribeIcon } from './unsubscribe.svg';
 
-const ResultPage = ({ courseTitle, error, intl }) => {
+function ResultPage({ courseTitle, error, intl }) {
   const errorDescription = (
     <FormattedMessage
       id="learning.goals.unsubscribe.errorDescription"
@@ -44,7 +44,7 @@ const ResultPage = ({ courseTitle, error, intl }) => {
       </Button>
     </>
   );
-};
+}
 
 ResultPage.defaultProps = {
   courseTitle: null,

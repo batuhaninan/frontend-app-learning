@@ -11,9 +11,7 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
   useSelector: () => ({ courseStatus: mockCourseStatus }),
 }));
-jest.mock('./PageLoading', () => function () {
-  return <div data-testid="page-loading" />;
-});
+jest.mock('./PageLoading', () => () => <div data-testid="page-loading" />);
 
 describe('CourseAccessErrorPage', () => {
   let courseId;

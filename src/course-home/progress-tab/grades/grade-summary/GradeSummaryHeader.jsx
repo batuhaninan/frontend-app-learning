@@ -11,7 +11,7 @@ import { Blocked, InfoOutline } from '@edx/paragon/icons';
 import messages from '../messages';
 import { useModel } from '../../../../generic/model-store';
 
-const GradeSummaryHeader = ({ intl, allOfSomeAssignmentTypeIsLocked }) => {
+function GradeSummaryHeader({ intl, allOfSomeAssignmentTypeIsLocked }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -54,7 +54,7 @@ const GradeSummaryHeader = ({ intl, allOfSomeAssignmentTypeIsLocked }) => {
       )}
     </div>
   );
-};
+}
 
 GradeSummaryHeader.propTypes = {
   intl: intlShape.isRequired,

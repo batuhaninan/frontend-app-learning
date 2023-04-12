@@ -8,11 +8,13 @@ import { useSelector } from 'react-redux';
 import { SelectMenu } from '@edx/paragon';
 import { Link } from 'react-router-dom';
 import { useModel, useModels } from '../../generic/model-store';
+/** [MM-P2P] Experiment */
+import { MMP2PFlyoverTrigger } from '../../experiments/mm-p2p';
 import JumpNavMenuItem from './JumpNavMenuItem';
 
-const CourseBreadcrumb = ({
+function CourseBreadcrumb({
   content, withSeparator, courseId, sequenceId, unitId, isStaff,
-}) => {
+}) {
   const defaultContent = content.filter(destination => destination.default)[0] || { id: courseId, label: '', sequences: [] };
   return (
     <>
@@ -55,7 +57,7 @@ const CourseBreadcrumb = ({
       </li>
     </>
   );
-};
+}
 CourseBreadcrumb.propTypes = {
   content: PropTypes.arrayOf(
     PropTypes.shape({
@@ -79,13 +81,15 @@ CourseBreadcrumb.defaultProps = {
   isStaff: null,
 };
 
-const CourseBreadcrumbs = ({
+export default function CourseBreadcrumbs({
   courseId,
   sectionId,
   sequenceId,
   unitId,
   isStaff,
-}) => {
+  /** [MM-P2P] Experiment */
+  mmp2p,
+}) {
   const course = useModel('coursewareMeta', courseId);
   const courseStatus = useSelector(state => state.courseware.courseStatus);
   const sequenceStatus = useSelector(state => state.courseware.sequenceStatus);
@@ -148,10 +152,14 @@ const CourseBreadcrumbs = ({
             isStaff={isStaff}
           />
         ))}
+        {/** [MM-P2P] Experiment */}
+        {mmp2p.state && mmp2p.state.isEnabled && (
+          <MMP2PFlyoverTrigger options={mmp2p} />
+        )}
       </ol>
     </nav>
   );
-};
+}
 
 CourseBreadcrumbs.propTypes = {
   courseId: PropTypes.string.isRequired,
@@ -159,6 +167,12 @@ CourseBreadcrumbs.propTypes = {
   sequenceId: PropTypes.string,
   unitId: PropTypes.string,
   isStaff: PropTypes.bool,
+  /** [MM-P2P] Experiment */
+  mmp2p: PropTypes.shape({
+    state: PropTypes.shape({
+      isEnabled: PropTypes.bool.isRequired,
+    }),
+  }),
 };
 
 CourseBreadcrumbs.defaultProps = {
@@ -166,6 +180,6 @@ CourseBreadcrumbs.defaultProps = {
   sequenceId: null,
   unitId: null,
   isStaff: null,
+  /** [MM-P2P] Experiment */
+  mmp2p: {},
 };
-
-export default CourseBreadcrumbs;

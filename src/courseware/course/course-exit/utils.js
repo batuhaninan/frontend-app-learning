@@ -66,7 +66,7 @@ function getCourseExitMode(
 }
 
 // Returns null in order to render the default navigation text
-function GetCourseExitNavigation(courseId, intl) {
+function getCourseExitNavigation(courseId, intl) {
   const {
     certificateData,
     hasScheduledContent,
@@ -133,7 +133,7 @@ const logVisit = (org, courseId, administrator, variant) => {
 export {
   COURSE_EXIT_MODES,
   getCourseExitMode,
-  GetCourseExitNavigation,
+  getCourseExitNavigation,
   logClick,
   logVisit,
 };

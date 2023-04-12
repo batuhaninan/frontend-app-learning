@@ -13,23 +13,27 @@ import {
   SupportMissionBullet,
 } from '../upsell-bullets/UpsellBullets';
 
-const UpsellNoFBECardContent = () => (
-  <ul className="fa-ul upgrade-notification-ul pt-0">
-    <VerifiedCertBullet />
-    <SupportMissionBullet />
-  </ul>
-);
+function UpsellNoFBECardContent() {
+  return (
+    <ul className="fa-ul upgrade-notification-ul pt-0">
+      <VerifiedCertBullet />
+      <SupportMissionBullet />
+    </ul>
+  );
+}
 
-const UpsellFBEFarAwayCardContent = () => (
-  <ul className="fa-ul upgrade-notification-ul">
-    <VerifiedCertBullet />
-    <UnlockGradedBullet />
-    <FullAccessBullet />
-    <SupportMissionBullet />
-  </ul>
-);
+function UpsellFBEFarAwayCardContent() {
+  return (
+    <ul className="fa-ul upgrade-notification-ul">
+      <VerifiedCertBullet />
+      <UnlockGradedBullet />
+      <FullAccessBullet />
+      <SupportMissionBullet />
+    </ul>
+  );
+}
 
-const UpsellFBESoonCardContent = ({ accessExpirationDate, timezoneFormatArgs }) => {
+function UpsellFBESoonCardContent({ accessExpirationDate, timezoneFormatArgs }) {
   const includingAnyProgress = (
     <span className="font-weight-bold">
       <FormattedMessage
@@ -79,7 +83,7 @@ const UpsellFBESoonCardContent = ({ accessExpirationDate, timezoneFormatArgs }) 
       </p>
     </div>
   );
-};
+}
 
 UpsellFBESoonCardContent.propTypes = {
   accessExpirationDate: PropTypes.PropTypes.instanceOf(Date).isRequired,
@@ -92,20 +96,22 @@ UpsellFBESoonCardContent.defaultProps = {
   timezoneFormatArgs: {},
 };
 
-const PastExpirationCardContent = () => (
-  <div className="upgrade-notification-text">
-    <p>
-      <FormattedMessage
-        id="learning.generic.upgradeNotification.pastExpiration.content"
-        defaultMessage="The upgrade deadline for this course passed. To upgrade, enroll in the next available session."
-      />
-    </p>
-  </div>
-);
+function PastExpirationCardContent() {
+  return (
+    <div className="upgrade-notification-text">
+      <p>
+        <FormattedMessage
+          id="learning.generic.upgradeNotification.pastExpiration.content"
+          defaultMessage="The upgrade deadline for this course passed. To upgrade, enroll in the next available session."
+        />
+      </p>
+    </div>
+  );
+}
 
-const ExpirationCountdown = ({
+function ExpirationCountdown({
   courseId, hoursToExpiration, setupgradeNotificationCurrentState, type,
-}) => {
+}) {
   let expirationText;
   if (hoursToExpiration >= 24) { // More than 1 day left
     // setupgradeNotificationCurrentState is available in NotificationTray (not course home)
@@ -173,7 +179,7 @@ const ExpirationCountdown = ({
     );
   }
   return (<div className="upsell-warning">{expirationText}</div>);
-};
+}
 
 ExpirationCountdown.propTypes = {
   courseId: PropTypes.string.isRequired,
@@ -186,9 +192,9 @@ ExpirationCountdown.defaultProps = {
   type: null,
 };
 
-const AccessExpirationDateBanner = ({
+function AccessExpirationDateBanner({
   courseId, accessExpirationDate, timezoneFormatArgs, setupgradeNotificationCurrentState,
-}) => {
+}) {
   if (setupgradeNotificationCurrentState) {
     setupgradeNotificationCurrentState('accessDateView');
     setLocalStorage(`upgradeNotificationCurrentState.${courseId}`, 'accessDateView');
@@ -212,7 +218,7 @@ const AccessExpirationDateBanner = ({
       />
     </div>
   );
-};
+}
 
 AccessExpirationDateBanner.propTypes = {
   courseId: PropTypes.string.isRequired,
@@ -228,9 +234,9 @@ AccessExpirationDateBanner.defaultProps = {
   setupgradeNotificationCurrentState: null,
 };
 
-const PastExpirationDateBanner = ({
+function PastExpirationDateBanner({
   courseId, accessExpirationDate, timezoneFormatArgs, setupgradeNotificationCurrentState,
-}) => {
+}) {
   if (setupgradeNotificationCurrentState) {
     setupgradeNotificationCurrentState('PastExpirationDate');
     setLocalStorage(`upgradeNotificationCurrentState.${courseId}`, 'PastExpirationDate');
@@ -254,7 +260,7 @@ const PastExpirationDateBanner = ({
       />
     </div>
   );
-};
+}
 
 PastExpirationDateBanner.propTypes = {
   courseId: PropTypes.string.isRequired,
@@ -270,7 +276,7 @@ PastExpirationDateBanner.defaultProps = {
   setupgradeNotificationCurrentState: null,
 };
 
-const UpgradeNotification = ({
+function UpgradeNotification({
   accessExpiration,
   contentTypeGatingEnabled,
   marketingUrl,
@@ -283,12 +289,16 @@ const UpgradeNotification = ({
   upsellPageName,
   userTimezone,
   verifiedMode,
-}) => {
+}) {
   const dateNow = Date.now();
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const correctedTime = new Date(dateNow + timeOffsetMillis);
   const accessExpirationDate = accessExpiration ? new Date(accessExpiration.expirationDate) : null;
   const pastExpirationDeadline = accessExpiration ? new Date(dateNow) > accessExpirationDate : false;
+
+  if (!verifiedMode) {
+    return null;
+  }
 
   const eventProperties = {
     org_key: org,
@@ -306,12 +316,7 @@ const UpgradeNotification = ({
   useEffect(() => {
     sendTrackingLogEvent('edx.bi.course.upgrade.sidebarupsell.displayed', eventProperties);
     sendTrackEvent('Promotion Viewed', promotionEventProperties);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!verifiedMode) {
-    return null;
-  }
 
   const logClick = () => {
     sendTrackingLogEvent('edx.bi.course.upgrade.sidebarupsell.clicked', eventProperties);
@@ -497,7 +502,7 @@ const UpgradeNotification = ({
       </div>
     </section>
   );
-};
+}
 
 UpgradeNotification.propTypes = {
   courseId: PropTypes.string.isRequired,

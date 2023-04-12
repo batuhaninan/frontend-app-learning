@@ -7,17 +7,17 @@ const AccessExpirationMasqueradeBanner = React.lazy(() => import('./AccessExpira
 
 function useAccessExpirationAlert(accessExpiration, courseId, org, userTimezone, topic, analyticsPageName) {
   const isVisible = accessExpiration && !accessExpiration.masqueradingExpiredCourse; // If it exists, show it.
-  const payload = useMemo(() => ({
+  const payload = {
     accessExpiration,
     courseId,
     org,
     userTimezone,
     analyticsPageName,
-  }), [accessExpiration, analyticsPageName, courseId, org, userTimezone]);
+  };
 
   useAlert(isVisible, {
     code: 'clientAccessExpirationAlert',
-    payload,
+    payload: useMemo(() => payload, Object.values(payload).sort()),
     topic,
   });
 
@@ -34,14 +34,14 @@ export function useAccessExpirationMasqueradeBanner(courseId, tab) {
 
   const isVisible = accessExpiration && accessExpiration.masqueradingExpiredCourse;
   const expirationDate = accessExpiration && accessExpiration.expirationDate;
-  const payload = useMemo(() => ({
+  const payload = {
     expirationDate,
     userTimezone,
-  }), [expirationDate, userTimezone]);
+  };
 
   useAlert(isVisible, {
     code: 'clientAccessExpirationMasqueradeBanner',
-    payload,
+    payload: useMemo(() => payload, Object.values(payload).sort()),
     topic: 'instructor-toolbar-alerts',
   });
 

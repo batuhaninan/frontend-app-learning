@@ -9,7 +9,7 @@ import { Hyperlink } from '@edx/paragon';
 import messages from './messages';
 import { useModel } from '../../../generic/model-store';
 
-const RelatedLinks = ({ intl }) => {
+function RelatedLinks({ intl }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -56,7 +56,7 @@ const RelatedLinks = ({ intl }) => {
       </ul>
     </section>
   );
-};
+}
 
 RelatedLinks.propTypes = {
   intl: intlShape.isRequired,

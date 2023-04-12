@@ -7,7 +7,7 @@ import { WarningFilled } from '@edx/paragon/icons';
 import { getConfig } from '@edx/frontend-platform';
 import genericMessages from './messages';
 
-const ActiveEnterpriseAlert = ({ intl, payload }) => {
+function ActiveEnterpriseAlert({ intl, payload }) {
   const { text, courseId } = payload;
   const changeActiveEnterprise = (
     <Hyperlink
@@ -35,7 +35,7 @@ const ActiveEnterpriseAlert = ({ intl, payload }) => {
       />
     </Alert>
   );
-};
+}
 
 ActiveEnterpriseAlert.propTypes = {
   intl: intlShape.isRequired,

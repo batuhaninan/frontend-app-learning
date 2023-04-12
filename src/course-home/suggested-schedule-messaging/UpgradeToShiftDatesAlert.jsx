@@ -13,7 +13,7 @@ import {
 import { useModel } from '../../generic/model-store';
 import messages from './messages';
 
-const UpgradeToShiftDatesAlert = ({ intl, logUpgradeLinkClick, model }) => {
+function UpgradeToShiftDatesAlert({ intl, logUpgradeLinkClick, model }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -57,7 +57,7 @@ const UpgradeToShiftDatesAlert = ({ intl, logUpgradeLinkClick, model }) => {
       </Row>
     </Alert>
   );
-};
+}
 
 UpgradeToShiftDatesAlert.propTypes = {
   intl: intlShape.isRequired,

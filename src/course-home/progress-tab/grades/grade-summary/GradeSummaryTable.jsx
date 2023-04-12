@@ -14,7 +14,7 @@ import GradeSummaryTableFooter from './GradeSummaryTableFooter';
 
 import messages from '../messages';
 
-const GradeSummaryTable = ({ intl, setAllOfSomeAssignmentTypeIsLocked }) => {
+function GradeSummaryTable({ intl, setAllOfSomeAssignmentTypeIsLocked }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -79,16 +79,6 @@ const GradeSummaryTable = ({ intl, setAllOfSomeAssignmentTypeIsLocked }) => {
       weightedGrade: { weightedGrade: `${(assignment.weightedGrade * 100).toFixed(0)}${isLocaleRtl ? '\u200f' : ''}%`, locked },
     };
   });
-  const getAssignmentTypeCell = (value) => (
-    <AssignmentTypeCell
-      assignmentType={value.type} // eslint-disable-line react/prop-types
-      footnoteId={value.footnoteId} // eslint-disable-line react/prop-types
-      footnoteMarker={value.footnoteMarker} // eslint-disable-line react/prop-types
-      locked={value.locked} // eslint-disable-line react/prop-types
-    />
-  );
-
-  const getCell = (locked, value) => <span className={locked ? 'greyed-out' : ''}>{value}</span>;
 
   return (
     <>
@@ -99,28 +89,45 @@ const GradeSummaryTable = ({ intl, setAllOfSomeAssignmentTypeIsLocked }) => {
           {
             Header: `${intl.formatMessage(messages.assignmentType)}`,
             accessor: 'type',
-            Cell: ({ value }) => getAssignmentTypeCell(value),
+            // eslint-disable-next-line react/prop-types
+            Cell: ({ value }) => (
+              <AssignmentTypeCell
+                assignmentType={value.type} // eslint-disable-line react/prop-types
+                footnoteId={value.footnoteId} // eslint-disable-line react/prop-types
+                footnoteMarker={value.footnoteMarker} // eslint-disable-line react/prop-types
+                locked={value.locked} // eslint-disable-line react/prop-types
+              />
+            ),
             headerClassName: 'h5 mb-0',
           },
           {
             Header: `${intl.formatMessage(messages.weight)}`,
             accessor: 'weight',
             headerClassName: 'justify-content-end h5 mb-0',
-            Cell: ({ value }) => getCell(value.locked, value.weight),
+            // eslint-disable-next-line react/prop-types
+            Cell: ({ value }) => (
+              <span className={value.locked ? 'greyed-out' : ''}>{value.weight}</span> // eslint-disable-line react/prop-types
+            ),
             cellClassName: 'text-right small',
           },
           {
             Header: `${intl.formatMessage(messages.grade)}`,
             accessor: 'grade',
             headerClassName: 'justify-content-end h5 mb-0',
-            Cell: ({ value }) => getCell(value.locked, value.grade),
+            // eslint-disable-next-line react/prop-types
+            Cell: ({ value }) => (
+              <span className={value.locked ? 'greyed-out' : ''}>{value.grade}</span> // eslint-disable-line react/prop-types
+            ),
             cellClassName: 'text-right small',
           },
           {
             Header: `${intl.formatMessage(messages.weightedGrade)}`,
             accessor: 'weightedGrade',
             headerClassName: 'justify-content-end h5 mb-0 text-right',
-            Cell: ({ value }) => getCell(value.locked, value.weightedGrade),
+            // eslint-disable-next-line react/prop-types
+            Cell: ({ value }) => (
+              <span className={value.locked ? 'greyed-out' : ''}>{value.weightedGrade}</span> // eslint-disable-line react/prop-types
+            ),
             cellClassName: 'text-right font-weight-bold small',
           },
         ]}
@@ -134,7 +141,7 @@ const GradeSummaryTable = ({ intl, setAllOfSomeAssignmentTypeIsLocked }) => {
       )}
     </>
   );
-};
+}
 
 GradeSummaryTable.propTypes = {
   intl: intlShape.isRequired,

@@ -12,7 +12,7 @@ import RelatedLinks from './related-links/RelatedLinks';
 
 import { useModel } from '../../generic/model-store';
 
-const ProgressTab = () => {
+function ProgressTab() {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -55,6 +55,6 @@ const ProgressTab = () => {
       </div>
     </>
   );
-};
+}
 
 export default ProgressTab;

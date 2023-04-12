@@ -36,7 +36,7 @@ function getStudioUrl(courseId, unitId) {
   return urlFull;
 }
 
-const InstructorToolbar = (props) => {
+export default function InstructorToolbar(props) {
   // This didMount logic became necessary once we had a page that does a redirect on a quick exit.
   // As a result, it unmounts the InstructorToolbar (which will be remounted by the new component),
   // but the InstructorToolbar's MasqueradeWidget has an outgoing request. Since it is unmounted
@@ -45,7 +45,6 @@ const InstructorToolbar = (props) => {
   // NOTE: This was originally added because of the CourseExit page redirect. Once that page stops
   //   doing a redirect because a CourseExit experience exists for all learners, this could be removed
   const [didMount, setDidMount] = useState(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setDidMount(true);
     // Returning this function here will run setDidMount(false) when this component is unmounted
@@ -109,7 +108,7 @@ const InstructorToolbar = (props) => {
       />
     </div>
   ));
-};
+}
 
 InstructorToolbar.propTypes = {
   courseId: PropTypes.string,
@@ -122,5 +121,3 @@ InstructorToolbar.defaultProps = {
   unitId: undefined,
   tab: '',
 };
-
-export default InstructorToolbar;

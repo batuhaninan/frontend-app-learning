@@ -29,20 +29,22 @@ function getAlertIcon(type) {
   }
 }
 
-const Alert = ({
+function Alert({
   type, dismissible, children, onDismiss, stacked,
-}) => (
-  <ParagonAlert
-    data-testid={`alert-container-${type}`}
-    variant={getAlertVariant(type)}
-    icon={getAlertIcon(type)}
-    dismissible={dismissible}
-    onClose={onDismiss}
-    stacked={stacked}
-  >
-    {children}
-  </ParagonAlert>
-);
+}) {
+  return (
+    <ParagonAlert
+      data-testid={`alert-container-${type}`}
+      variant={getAlertVariant(type)}
+      icon={getAlertIcon(type)}
+      dismissible={dismissible}
+      onClose={onDismiss}
+      stacked={stacked}
+    >
+      {children}
+    </ParagonAlert>
+  );
+}
 
 Alert.propTypes = {
   type: PropTypes.oneOf([

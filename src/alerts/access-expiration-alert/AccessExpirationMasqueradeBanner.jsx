@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedDate } from '@edx/frontend-platform/i18n';
 import { PageBanner } from '@edx/paragon';
 
-const AccessExpirationMasqueradeBanner = ({ payload }) => {
+function AccessExpirationMasqueradeBanner({ payload }) {
   const {
     expirationDate,
     userTimezone,
@@ -27,7 +27,7 @@ const AccessExpirationMasqueradeBanner = ({ payload }) => {
       />
     </PageBanner>
   );
-};
+}
 
 AccessExpirationMasqueradeBanner.propTypes = {
   payload: PropTypes.shape({

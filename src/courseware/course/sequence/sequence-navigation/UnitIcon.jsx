@@ -5,7 +5,7 @@ import {
   faVideo, faBook, faEdit, faTasks, faLock,
 } from '@fortawesome/free-solid-svg-icons';
 
-const UnitIcon = ({ type }) => {
+export default function UnitIcon({ type }) {
   let icon = null;
   switch (type) {
     case 'video':
@@ -30,10 +30,8 @@ const UnitIcon = ({ type }) => {
   return (
     <FontAwesomeIcon className="unit-icon" icon={icon} />
   );
-};
+}
 
 UnitIcon.propTypes = {
   type: PropTypes.oneOf(['video', 'other', 'vertical', 'problem', 'lock']).isRequired,
 };
-
-export default UnitIcon;

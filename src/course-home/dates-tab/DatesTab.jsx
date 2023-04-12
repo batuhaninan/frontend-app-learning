@@ -9,12 +9,14 @@ import Timeline from './timeline/Timeline';
 import { fetchDatesTab } from '../data';
 import { useModel } from '../../generic/model-store';
 
+/** [MM-P2P] Experiment */
+import { initDatesMMP2P } from '../../experiments/mm-p2p';
 import SuggestedScheduleHeader from '../suggested-schedule-messaging/SuggestedScheduleHeader';
 import ShiftDatesAlert from '../suggested-schedule-messaging/ShiftDatesAlert';
 import UpgradeToCompleteAlert from '../suggested-schedule-messaging/UpgradeToCompleteAlert';
 import UpgradeToShiftDatesAlert from '../suggested-schedule-messaging/UpgradeToShiftDatesAlert';
 
-const DatesTab = ({ intl }) => {
+function DatesTab({ intl }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -27,6 +29,9 @@ const DatesTab = ({ intl }) => {
   const {
     courseDateBlocks,
   } = useModel('dates', courseId);
+
+  /** [MM-P2P] Experiment */
+  const mmp2p = initDatesMMP2P(courseId);
 
   const hasDeadlines = courseDateBlocks && courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
 
@@ -46,7 +51,8 @@ const DatesTab = ({ intl }) => {
       <div role="heading" aria-level="1" className="h2 my-3">
         {intl.formatMessage(messages.title)}
       </div>
-      {isSelfPaced && hasDeadlines && (
+      { /** [MM-P2P] Experiment */ }
+      {isSelfPaced && hasDeadlines && !mmp2p.state.isEnabled && (
         <>
           <ShiftDatesAlert model="dates" fetch={fetchDatesTab} />
           <SuggestedScheduleHeader />
@@ -54,10 +60,10 @@ const DatesTab = ({ intl }) => {
           <UpgradeToShiftDatesAlert logUpgradeLinkClick={logUpgradeLinkClick} model="dates" />
         </>
       )}
-      <Timeline />
+      <Timeline mmp2p={mmp2p} />
     </>
   );
-};
+}
 
 DatesTab.propTypes = {
   intl: intlShape.isRequired,

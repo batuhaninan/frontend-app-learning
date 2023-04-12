@@ -5,7 +5,7 @@ import { Button } from '@edx/paragon';
 
 import FormattedPricing from './FormattedPricing';
 
-const UpgradeNowButton = (props) => {
+function UpgradeNowButton(props) {
   const {
     intl,
     offer,
@@ -39,7 +39,7 @@ const UpgradeNowButton = (props) => {
       />
     </Button>
   );
-};
+}
 
 UpgradeNowButton.defaultProps = {
   offer: null,

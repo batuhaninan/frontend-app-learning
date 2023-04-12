@@ -19,10 +19,10 @@ import {
   SupportMissionBullet,
 } from '../../../../generic/upsell-bullets/UpsellBullets';
 
-const LockPaywall = ({
+function LockPaywall({
   intl,
   courseId,
-}) => {
+}) {
   const { notificationTrayVisible } = useContext(SidebarContext);
   const course = useModel('coursewareMeta', courseId);
   const {
@@ -141,7 +141,7 @@ const LockPaywall = ({
       </div>
     </Alert>
   );
-};
+}
 LockPaywall.propTypes = {
   intl: intlShape.isRequired,
   courseId: PropTypes.string.isRequired,

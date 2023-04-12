@@ -1,6 +1,4 @@
-import React, {
-  useState, useRef, useEffect, useMemo,
-} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import UserMessagesContext from './UserMessagesContext';
@@ -29,7 +27,7 @@ function popFlashMessages() {
   return popLocalStorage(FLASH_MESSAGES_LOCAL_STORAGE_KEY) || [];
 }
 
-const UserMessagesProvider = ({ children }) => {
+export default function UserMessagesProvider({ children }) {
   // Note: The callbacks (add, remove, clear) below interact with useState in very subtle ways.
   // When we call setMessages, we always do so with the function-based form of the handler, making
   // use of the "current" state and not relying on lexical scoping to access the state exposed
@@ -83,20 +81,20 @@ const UserMessagesProvider = ({ children }) => {
     flashMessages.forEach(flashMessage => add(flashMessage));
   }, []);
 
-  const value = useMemo(() => ({
+  const value = {
     add,
     addFlash,
     remove,
     clear,
     messages,
-  }), [messages]);
+  };
 
   return (
     <UserMessagesContext.Provider value={value}>
       {children}
     </UserMessagesContext.Provider>
   );
-};
+}
 
 UserMessagesProvider.propTypes = {
   children: PropTypes.node,
@@ -105,5 +103,3 @@ UserMessagesProvider.propTypes = {
 UserMessagesProvider.defaultProps = {
   children: null,
 };
-
-export default UserMessagesProvider;

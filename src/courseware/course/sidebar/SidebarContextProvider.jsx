@@ -1,8 +1,6 @@
 import { breakpoints, useWindowSize } from '@edx/paragon';
 import PropTypes from 'prop-types';
-import React, {
-  useEffect, useState, useMemo, useCallback,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getLocalStorage, setLocalStorage } from '../../../data/localStorage';
 import { getSessionStorage } from '../../../data/sessionStorage';
@@ -10,26 +8,18 @@ import { useModel } from '../../../generic/model-store';
 import SidebarContext from './SidebarContext';
 import { SIDEBARS } from './sidebars';
 
-const SidebarProvider = ({
+export default function SidebarProvider({
   courseId,
   unitId,
   children,
-}) => {
+}) {
   const { verifiedMode } = useModel('courseHomeMeta', courseId);
   const shouldDisplayFullScreen = useWindowSize().width < breakpoints.large.minWidth;
   const shouldDisplaySidebarOpen = useWindowSize().width > breakpoints.medium.minWidth;
   const showNotificationsOnLoad = getSessionStorage(`notificationTrayStatus.${courseId}`) !== 'closed';
-  const query = new URLSearchParams(window.location.search);
-  if (query.get('sidebar') === 'true') {
-    localStorage.setItem('showDiscussionSidebar', true);
-  }
-  const showDiscussionSidebar = localStorage.getItem('showDiscussionSidebar') !== 'false';
-  const showNotificationSidebar = (verifiedMode && shouldDisplaySidebarOpen && showNotificationsOnLoad)
+  const initialSidebar = (verifiedMode && shouldDisplaySidebarOpen && showNotificationsOnLoad)
     ? SIDEBARS.NOTIFICATIONS.ID
     : null;
-  const initialSidebar = showDiscussionSidebar
-    ? SIDEBARS.DISCUSSIONS.ID
-    : showNotificationSidebar;
   const [currentSidebar, setCurrentSidebar] = useState(initialSidebar);
   const [notificationStatus, setNotificationStatus] = useState(getLocalStorage(`notificationStatus.${courseId}`));
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
@@ -39,45 +29,37 @@ const SidebarProvider = ({
     if (verifiedMode && currentSidebar === null && initialSidebar) {
       setCurrentSidebar(initialSidebar);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialSidebar, verifiedMode]);
 
-  const onNotificationSeen = useCallback(() => {
+  const onNotificationSeen = () => {
     setNotificationStatus('inactive');
     setLocalStorage(`notificationStatus.${courseId}`, 'inactive');
-  }, [courseId]);
+  };
 
-  const toggleSidebar = useCallback((sidebarId) => {
+  const toggleSidebar = (sidebarId) => {
     // Switch to new sidebar or hide the current sidebar
-    if (currentSidebar === SIDEBARS.DISCUSSIONS.ID) {
-      localStorage.setItem('showDiscussionSidebar', false);
-    } else if (sidebarId === SIDEBARS.DISCUSSIONS.ID) {
-      localStorage.setItem('showDiscussionSidebar', true);
-    }
     setCurrentSidebar(sidebarId === currentSidebar ? null : sidebarId);
-  }, [currentSidebar]);
-
-  const contextValue = useMemo(() => ({
-    toggleSidebar,
-    onNotificationSeen,
-    setNotificationStatus,
-    currentSidebar,
-    notificationStatus,
-    upgradeNotificationCurrentState,
-    setUpgradeNotificationCurrentState,
-    shouldDisplaySidebarOpen,
-    shouldDisplayFullScreen,
-    courseId,
-    unitId,
-  }), [courseId, currentSidebar, notificationStatus, onNotificationSeen, shouldDisplayFullScreen,
-    shouldDisplaySidebarOpen, toggleSidebar, unitId, upgradeNotificationCurrentState]);
+  };
 
   return (
-    <SidebarContext.Provider value={contextValue}>
+    <SidebarContext.Provider value={{
+      toggleSidebar,
+      onNotificationSeen,
+      setNotificationStatus,
+      currentSidebar,
+      notificationStatus,
+      upgradeNotificationCurrentState,
+      setUpgradeNotificationCurrentState,
+      shouldDisplaySidebarOpen,
+      shouldDisplayFullScreen,
+      courseId,
+      unitId,
+    }}
+    >
       {children}
     </SidebarContext.Provider>
   );
-};
+}
 
 SidebarProvider.propTypes = {
   courseId: PropTypes.string.isRequired,
@@ -88,5 +70,3 @@ SidebarProvider.propTypes = {
 SidebarProvider.defaultProps = {
   children: null,
 };
-
-export default SidebarProvider;

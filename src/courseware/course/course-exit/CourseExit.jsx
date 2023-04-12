@@ -15,7 +15,7 @@ import { unsubscribeFromGoalReminders } from './data/thunks';
 
 import { useModel } from '../../../generic/model-store';
 
-const CourseExit = ({ intl }) => {
+function CourseExit({ intl }) {
   const { courseId } = useSelector(state => state.courseware);
   const {
     certificateData,
@@ -74,7 +74,7 @@ const CourseExit = ({ intl }) => {
       {body}
     </>
   );
-};
+}
 
 CourseExit.propTypes = {
   intl: intlShape.isRequired,

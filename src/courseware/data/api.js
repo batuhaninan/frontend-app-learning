@@ -206,7 +206,9 @@ export async function getResumeBlock(courseId) {
 }
 
 export async function postIntegritySignature(courseId) {
-  const { data } = await getAuthenticatedHttpClient().post(`${getConfig().LMS_BASE_URL}/api/agreements/v1/integrity_signature/${courseId}`, {});
+  const { data } = await getAuthenticatedHttpClient().post(
+    `${getConfig().LMS_BASE_URL}/api/agreements/v1/integrity_signature/${courseId}`, {},
+  );
   return camelCaseObject(data);
 }
 

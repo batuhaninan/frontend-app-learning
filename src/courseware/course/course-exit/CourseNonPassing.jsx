@@ -14,7 +14,7 @@ import DashboardFootnote from './DashboardFootnote';
 import messages from './messages';
 import { logClick, logVisit } from './utils';
 
-const CourseNonPassing = ({ intl }) => {
+function CourseNonPassing({ intl }) {
   const { courseId } = useSelector(state => state.courseware);
   const {
     org,
@@ -58,7 +58,7 @@ const CourseNonPassing = ({ intl }) => {
       </div>
     </>
   );
-};
+}
 
 CourseNonPassing.propTypes = {
   intl: intlShape.isRequired,

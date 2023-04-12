@@ -6,7 +6,7 @@ import { OuterExamTimer } from '@edx/frontend-lib-special-exams';
 
 import TabPage from './TabPage';
 
-const TabContainer = (props) => {
+export default function TabContainer(props) {
   const {
     children,
     fetch,
@@ -19,7 +19,6 @@ const TabContainer = (props) => {
   useEffect(() => {
     // The courseId from the URL is the course we WANT to load.
     dispatch(fetch(courseIdFromUrl));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIdFromUrl]);
 
   // The courseId from the store is the course we HAVE loaded.  If the URL changes,
@@ -40,7 +39,7 @@ const TabContainer = (props) => {
       {children}
     </TabPage>
   );
-};
+}
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
@@ -48,5 +47,3 @@ TabContainer.propTypes = {
   slice: PropTypes.string.isRequired,
   tab: PropTypes.string.isRequired,
 };
-
-export default TabContainer;

@@ -16,7 +16,7 @@ import { useModel } from '../../../generic/model-store';
 import messages from './messages';
 import { logClick } from './utils';
 
-const CatalogSuggestion = ({ intl, variant }) => {
+function CatalogSuggestion({ intl, variant }) {
   const { courseId } = useSelector(state => state.courseware);
   const { org } = useModel('courseHomeMeta', courseId);
   const { administrator } = getAuthenticatedUser();
@@ -45,7 +45,7 @@ const CatalogSuggestion = ({ intl, variant }) => {
       </div>
     </div>
   );
-};
+}
 
 CatalogSuggestion.propTypes = {
   intl: intlShape.isRequired,

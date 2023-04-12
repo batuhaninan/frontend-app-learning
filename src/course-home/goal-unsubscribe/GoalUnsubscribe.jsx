@@ -10,7 +10,7 @@ import { unsubscribeFromCourseGoal } from '../data/api';
 import messages from './messages';
 import ResultPage from './ResultPage';
 
-const GoalUnsubscribe = ({ intl }) => {
+function GoalUnsubscribe({ intl }) {
   const { token } = useParams();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +33,6 @@ const GoalUnsubscribe = ({ intl }) => {
     // as visiting this page is allowed to be done anonymously and without the context of the course.
     // The token can be used to connect a user and course, it will just require some post-processing
     sendTrackEvent('edx.ui.lms.goal.unsubscribe', { token });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // deps=[] to only run once
 
   return (
@@ -49,7 +48,7 @@ const GoalUnsubscribe = ({ intl }) => {
       </main>
     </>
   );
-};
+}
 
 GoalUnsubscribe.propTypes = {
   intl: intlShape.isRequired,

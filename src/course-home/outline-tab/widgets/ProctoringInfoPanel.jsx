@@ -10,7 +10,7 @@ import { getProctoringInfoData } from '../../data/api';
 import { fetchProctoringInfoResolved } from '../../data/slice';
 import { useModel } from '../../../generic/model-store';
 
-const ProctoringInfoPanel = ({ intl }) => {
+function ProctoringInfoPanel({ intl }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -128,7 +128,6 @@ const ProctoringInfoPanel = ({ intl }) => {
       .finally(() => {
         dispatch(fetchProctoringInfoResolved());
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let onboardingExamButton = null;
@@ -171,7 +170,6 @@ const ProctoringInfoPanel = ({ intl }) => {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       { showInfoPanel && (
         <section className={`mb-4 p-3 outline-sidebar-proctoring-panel ${getBorderClass()}`}>
@@ -214,7 +212,7 @@ const ProctoringInfoPanel = ({ intl }) => {
       )}
     </>
   );
-};
+}
 
 ProctoringInfoPanel.propTypes = {
   intl: intlShape.isRequired,

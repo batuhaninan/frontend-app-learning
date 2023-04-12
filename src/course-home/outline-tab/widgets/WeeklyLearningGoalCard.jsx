@@ -15,11 +15,11 @@ import { saveWeeklyLearningGoal } from '../../data';
 import { useModel } from '../../../generic/model-store';
 import './FlagButton.scss';
 
-const WeeklyLearningGoalCard = ({
+function WeeklyLearningGoalCard({
   daysPerWeek,
   subscribedToReminders,
   intl,
-}) => {
+}) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -36,7 +36,7 @@ const WeeklyLearningGoalCard = ({
   const [isGetReminderSelected, setGetReminderSelected] = useState(subscribedToReminders);
   const location = useLocation();
 
-  const handleSelect = (days, triggeredFromEmail = false) => {
+  function handleSelect(days, triggeredFromEmail = false) {
     // Set the subscription button if this is the first time selecting a goal
     const selectReminders = daysPerWeekGoal === null ? true : isGetReminderSelected;
     setGetReminderSelected(selectReminders);
@@ -51,10 +51,10 @@ const WeeklyLearningGoalCard = ({
         reminder_selected: selectReminders,
       });
       if (triggeredFromEmail) {
-        sendTrackEvent('enrollment.email.clicked.setgoal', {});
+        sendTrackEvent('welcome.email.clicked.setgoal', {});
       }
     }
-  };
+  }
 
   function handleSubscribeToReminders(event) {
     const isGetReminderChecked = event.target.checked;
@@ -84,7 +84,6 @@ const WeeklyLearningGoalCard = ({
         search: currentParams.toString(),
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   return (
@@ -147,7 +146,7 @@ const WeeklyLearningGoalCard = ({
       )}
     </Card>
   );
-};
+}
 
 WeeklyLearningGoalCard.propTypes = {
   daysPerWeek: PropTypes.number,

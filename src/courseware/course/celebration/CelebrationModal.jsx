@@ -17,9 +17,9 @@ import SocialIcons from '../../social-share/SocialIcons';
 import { recordFirstSectionCelebration } from './utils';
 import { useModel } from '../../../generic/model-store';
 
-const CelebrationModal = ({
+function CelebrationModal({
   courseId, intl, isOpen, onClose, ...rest
-}) => {
+}) {
   const { org, celebrations } = useModel('courseHomeMeta', courseId);
   const dispatch = useDispatch();
   const wideScreen = useWindowSize().width >= breakpoints.small.minWidth;
@@ -28,7 +28,6 @@ const CelebrationModal = ({
     if (isOpen) {
       recordFirstSectionCelebration(org, courseId, celebrations, dispatch);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (
@@ -62,7 +61,7 @@ const CelebrationModal = ({
       </>
     </StandardModal>
   );
-};
+}
 
 CelebrationModal.propTypes = {
   courseId: PropTypes.string.isRequired,

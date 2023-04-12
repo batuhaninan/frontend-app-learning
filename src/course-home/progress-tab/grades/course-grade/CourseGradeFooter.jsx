@@ -10,7 +10,7 @@ import { useModel } from '../../../../generic/model-store';
 import GradeRangeTooltip from './GradeRangeTooltip';
 import messages from '../messages';
 
-const CourseGradeFooter = ({ intl, passingGrade }) => {
+function CourseGradeFooter({ intl, passingGrade }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -83,7 +83,7 @@ const CourseGradeFooter = ({ intl, passingGrade }) => {
       </div>
     </div>
   );
-};
+}
 
 CourseGradeFooter.propTypes = {
   intl: intlShape.isRequired,

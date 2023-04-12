@@ -12,16 +12,16 @@ export default function useActiveEnterpriseAlert(courseId) {
    */
   const isVisible = courseAccess && !courseAccess.hasAccess && courseAccess.errorCode === 'incorrect_active_enterprise';
 
-  const payload = useMemo(() => ({
+  const payload = {
     text: courseAccess && courseAccess.userMessage,
     courseId,
-  }), [courseAccess, courseId]);
+  };
   useAlert(isVisible, {
     code: 'clientActiveEnterpriseAlert',
     topic: 'outline',
     dismissible: false,
     type: ALERT_TYPES.ERROR,
-    payload,
+    payload: useMemo(() => payload, Object.values(payload).sort()),
   });
 
   return { clientActiveEnterpriseAlert: ActiveEnterpriseAlert };

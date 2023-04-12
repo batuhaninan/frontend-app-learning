@@ -7,7 +7,7 @@ import { FormattedMessage, injectIntl, intlShape } from '@edx/frontend-platform/
 import messages from '../messages';
 import { useModel } from '../../../../generic/model-store';
 
-const DroppableAssignmentFootnote = ({ footnotes, intl }) => {
+function DroppableAssignmentFootnote({ footnotes, intl }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -37,7 +37,7 @@ const DroppableAssignmentFootnote = ({ footnotes, intl }) => {
       </ul>
     </>
   );
-};
+}
 
 DroppableAssignmentFootnote.propTypes = {
   footnotes: PropTypes.arrayOf(PropTypes.shape({

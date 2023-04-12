@@ -10,9 +10,7 @@ jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: () => mockDispatch,
 }));
-jest.mock('./TabPage', () => function () {
-  return <div data-testid="TabPage" />;
-});
+jest.mock('./TabPage', () => () => <div data-testid="TabPage" />);
 
 describe('Tab Container', () => {
   let courseId;

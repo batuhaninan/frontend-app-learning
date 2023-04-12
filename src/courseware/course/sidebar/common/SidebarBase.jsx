@@ -8,7 +8,7 @@ import { useEventListener } from '../../../../generic/hooks';
 import messages from '../../messages';
 import SidebarContext from '../SidebarContext';
 
-const SidebarBase = ({
+function SidebarBase({
   intl,
   title,
   ariaLabel,
@@ -17,7 +17,7 @@ const SidebarBase = ({
   children,
   showTitleBar,
   width,
-}) => {
+}) {
   const {
     toggleSidebar,
     shouldDisplayFullScreen,
@@ -29,19 +29,15 @@ const SidebarBase = ({
     if (type === 'learning.events.sidebar.close') {
       toggleSidebar(null);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sidebarId, toggleSidebar]);
 
   useEventListener('message', receiveMessage);
 
-  return (
+  return currentSidebar === sidebarId && (
     <section
       className={classNames('ml-0 ml-lg-4 border border-light-400 rounded-sm h-auto align-top', {
         'bg-white m-0 border-0 fixed-top vh-100 rounded-0': shouldDisplayFullScreen,
-        'min-vh-100': !shouldDisplayFullScreen,
-        'd-none': currentSidebar !== sidebarId,
       }, className)}
-      data-testid={`sidebar-${sidebarId}`}
       style={{ width: shouldDisplayFullScreen ? '100%' : width }}
       aria-label={ariaLabel}
     >
@@ -85,7 +81,7 @@ const SidebarBase = ({
       {children}
     </section>
   );
-};
+}
 
 SidebarBase.propTypes = {
   intl: intlShape.isRequired,

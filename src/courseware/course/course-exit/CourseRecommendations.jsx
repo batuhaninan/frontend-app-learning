@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect } from 'react';
 import { getConfig } from '@edx/frontend-platform';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
@@ -56,7 +55,7 @@ const ListStyles = {
   conjunction: 'conjunction',
 };
 
-const CourseCard = ({
+function CourseCard({
   original: {
     title,
     image,
@@ -65,7 +64,7 @@ const CourseCard = ({
     onClick,
   },
   intl,
-}) => {
+}) {
   const formatList = (items, style) => (
     items.join(intl.formatMessage(
       messages.listJoin,
@@ -113,7 +112,7 @@ const CourseCard = ({
       </Hyperlink>
     </div>
   );
-};
+}
 
 CourseCard.propTypes = {
   original: PropTypes.shape({
@@ -132,7 +131,7 @@ CourseCard.propTypes = {
 
 const IntlCard = injectIntl(CourseCard);
 
-const CourseRecommendations = ({ intl, variant }) => {
+function CourseRecommendations({ intl, variant }) {
   const { courseId, recommendationsStatus } = useSelector(state => ({ ...state.recommendations, ...state.courseware }));
   const { recommendations } = useModel('coursewareMeta', courseId);
   const { org, number } = useModel('courseHomeMeta', courseId);
@@ -143,7 +142,6 @@ const CourseRecommendations = ({ intl, variant }) => {
 
   useEffect(() => {
     dispatch(fetchCourseRecommendations(courseKey, courseId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const recommendationsLength = recommendations ? recommendations.length : 0;
@@ -202,7 +200,7 @@ const CourseRecommendations = ({ intl, variant }) => {
       </Hyperlink>
     </div>
   );
-};
+}
 
 CourseRecommendations.propTypes = {
   intl: intlShape.isRequired,

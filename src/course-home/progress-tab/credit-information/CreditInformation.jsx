@@ -10,7 +10,7 @@ import { DashboardLink } from '../../../shared/links';
 
 import messages from './messages';
 
-const CreditInformation = ({ intl }) => {
+function CreditInformation({ intl }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -106,7 +106,7 @@ const CreditInformation = ({ intl }) => {
       {requirements}
     </>
   );
-};
+}
 
 CreditInformation.propTypes = {
   intl: intlShape.isRequired,

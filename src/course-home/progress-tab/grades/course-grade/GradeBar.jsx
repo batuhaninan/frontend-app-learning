@@ -11,7 +11,7 @@ import PassingGradeTooltip from './PassingGradeTooltip';
 
 import messages from '../messages';
 
-const GradeBar = ({ intl, passingGrade }) => {
+function GradeBar({ intl, passingGrade }) {
   const {
     courseId,
   } = useSelector(state => state.courseHome);
@@ -49,7 +49,7 @@ const GradeBar = ({ intl, passingGrade }) => {
       </svg>
     </div>
   );
-};
+}
 
 GradeBar.propTypes = {
   intl: intlShape.isRequired,

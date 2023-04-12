@@ -14,7 +14,7 @@ import outlineMessages from '../../messages';
 import useEnrollClickHandler from '../../../../alerts/enrollment-alert/clickHook';
 import { useModel } from '../../../../generic/model-store';
 
-const PrivateCourseAlert = ({ intl, payload }) => {
+function PrivateCourseAlert({ intl, payload }) {
   const {
     anonymousUser,
     canEnroll,
@@ -100,7 +100,7 @@ const PrivateCourseAlert = ({ intl, payload }) => {
       )}
     </Alert>
   );
-};
+}
 
 PrivateCourseAlert.propTypes = {
   intl: intlShape.isRequired,

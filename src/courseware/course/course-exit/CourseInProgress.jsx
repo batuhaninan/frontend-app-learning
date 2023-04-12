@@ -14,7 +14,7 @@ import DashboardFootnote from './DashboardFootnote';
 import messages from './messages';
 import { logClick, logVisit } from './utils';
 
-const CourseInProgress = ({ intl }) => {
+function CourseInProgress({ intl }) {
   const { courseId } = useSelector(state => state.courseware);
   const {
     org,
@@ -58,7 +58,7 @@ const CourseInProgress = ({ intl }) => {
       </div>
     </>
   );
-};
+}
 
 CourseInProgress.propTypes = {
   intl: intlShape.isRequired,

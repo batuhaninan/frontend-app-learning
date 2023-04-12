@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import useIndexOfLastVisibleChild from './useIndexOfLastVisibleChild';
 
-const Tabs = ({ children, className, ...attrs }) => {
+export default function Tabs({ children, className, ...attrs }) {
   const [
     indexOfLastVisibleChild,
     containerElementRef,
@@ -29,30 +29,27 @@ const Tabs = ({ children, className, ...attrs }) => {
 
     // Insert the overflow menu at the cut off index (even if it will be hidden
     // it so it can be part of measurements)
-    wrappedChildren.splice(
-      indexOfOverflowStart,
-      0, (
-        <div
-          className="nav-item flex-shrink-0"
-          style={indexOfOverflowStart >= React.Children.count(children) ? invisibleStyle : null}
-          ref={overflowElementRef}
-          key="overflow"
-        >
-          <Dropdown className="h-100">
-            <Dropdown.Toggle variant="link" className="nav-link h-100" id="learn.course.tabs.navigation.overflow.menu">
-              <FormattedMessage
-                id="learn.course.tabs.navigation.overflow.menu"
-                description="The title of the overflow menu for course tabs"
-                defaultMessage="More..."
-              />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-right">{overflowChildren}</Dropdown.Menu>
-          </Dropdown>
-        </div>
-      ),
-    );
+    wrappedChildren.splice(indexOfOverflowStart, 0, (
+      <div
+        className="nav-item flex-shrink-0"
+        style={indexOfOverflowStart >= React.Children.count(children) ? invisibleStyle : null}
+        ref={overflowElementRef}
+        key="overflow"
+      >
+        <Dropdown className="h-100">
+          <Dropdown.Toggle variant="link" className="nav-link h-100" id="learn.course.tabs.navigation.overflow.menu">
+            <FormattedMessage
+              id="learn.course.tabs.navigation.overflow.menu"
+              description="The title of the overflow menu for course tabs"
+              defaultMessage="More..."
+            />
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-menu-right">{overflowChildren}</Dropdown.Menu>
+        </Dropdown>
+      </div>
+    ));
     return wrappedChildren;
-  }, [children, indexOfLastVisibleChild, invisibleStyle, overflowElementRef]);
+  }, [children, indexOfLastVisibleChild]);
 
   return (
     <nav
@@ -63,7 +60,7 @@ const Tabs = ({ children, className, ...attrs }) => {
       {tabChildren}
     </nav>
   );
-};
+}
 
 Tabs.propTypes = {
   children: PropTypes.node,
@@ -74,5 +71,3 @@ Tabs.defaultProps = {
   children: null,
   className: undefined,
 };
-
-export default Tabs;

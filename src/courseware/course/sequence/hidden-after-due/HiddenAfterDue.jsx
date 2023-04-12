@@ -8,7 +8,7 @@ import { useModel } from '../../../../generic/model-store';
 
 import messages from './messages';
 
-const HiddenAfterDue = ({ courseId, intl }) => {
+function HiddenAfterDue({ courseId, intl }) {
   const { tabs } = useModel('courseHomeMeta', courseId);
 
   const progressTab = tabs.find(tab => tab.slug === 'progress');
@@ -42,7 +42,7 @@ const HiddenAfterDue = ({ courseId, intl }) => {
       </p>
     </Alert>
   );
-};
+}
 
 HiddenAfterDue.propTypes = {
   intl: intlShape.isRequired,

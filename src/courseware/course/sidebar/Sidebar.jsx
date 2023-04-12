@@ -1,15 +1,18 @@
-import React from 'react';
-import { SIDEBAR_ORDER, SIDEBARS } from './sidebars';
+import React, { useContext } from 'react';
+import SidebarContext from './SidebarContext';
+import { SIDEBARS } from './sidebars';
 
-const Sidebar = () => (
-  <>
-    {
-      SIDEBAR_ORDER.map((sideBarId) => {
-        const SidebarToRender = SIDEBARS[sideBarId].Sidebar;
-        return <SidebarToRender />;
-      })
-    }
-  </>
-);
+function Sidebar() {
+  const {
+    currentSidebar,
+  } = useContext(SidebarContext);
+  if (!currentSidebar) {
+    return null;
+  }
+  const CurrentSidebar = SIDEBARS[currentSidebar].Sidebar;
+  return (
+    <CurrentSidebar />
+  );
+}
 
 export default Sidebar;
