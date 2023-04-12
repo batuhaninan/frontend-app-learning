@@ -51,7 +51,7 @@ const StartOrResumeCourseCard = ({ intl }) => {
             href={resumeCourseUrl}
             onClick={() => logResumeCourseClick()}
           >
-            {hasVisitedCourse ? intl.formatMessage(messages.resume) : intl.formatMessage(messages.start)}
+            {hasVisitedCourse ? intl.formatMessage(messages.resume) : intl.formatMessage(messages.start)} TEST
           </Button>
         )}
       />
