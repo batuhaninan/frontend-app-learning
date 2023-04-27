@@ -5,10 +5,13 @@
 
 @import "~@edx/frontend-component-footer/dist/footer";
 
+
+
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Satoshi', sans-serif;
 
   main {
     flex-grow: 1;
@@ -60,7 +63,10 @@
   .nav-link {
     border-bottom: 4px solid transparent;
     border-top: 4px solid transparent;
-    color: $gray-700;
+    color: rgb(38,38,38);
+    font-size: 13px;
+    font-family: 'Satoshi', sans-serif;
+    padding: 12px 26px !important;
 
     // temporary until we can remove .btn class from dropdowns
     border-left: 0;
@@ -70,7 +76,7 @@
     &:hover,
     &:focus,
     &.active {
-      font-weight: $font-weight-normal;
+      font-weight: $font-weight-bold;
       color: $primary-500;
       border-bottom-color: $primary-500;
     }
@@ -299,8 +305,7 @@
 
 .unit-navigation {
   display: flex;
-  justify-content: center;
-  max-width: 640px;
+  justify-content: space-between;
   margin: 0 auto;
 
   .previous-button,
@@ -314,11 +319,11 @@
   }
 
   .next-button {
-    flex-basis: 75%;
+    flex-basis: 20%;
   }
 
   .previous-button {
-    flex-basis: 25%;
+    flex-basis: 20%;
   }
 }
 
@@ -367,6 +372,16 @@
 
 .custom-container {
     max-width: 1036px !important;
+}
+
+.course-detail-header{
+    background-image: url("generic/assets/purple-header.png");
+    color: #001747;
+
+    &_title {
+        font-size: 32px;
+        font-weight: bold;
+    }
 }
 
 // Import component-specific sass files

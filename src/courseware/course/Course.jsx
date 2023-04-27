@@ -89,18 +89,17 @@ function Course({
         <title>{`${pageTitleBreadCrumbs.join(' | ')} | ${getConfig().SITE_NAME}`}</title>
       </Helmet>
       <div className="position-relative d-flex align-items-start">
-        <CourseBreadcrumbs
-          courseId={courseId}
-          sectionId={section ? section.id : null}
-          sequenceId={sequenceId}
-          isStaff={isStaff}
-          unitId={unitId}
-          //* * [MM-P2P] Experiment */
-          mmp2p={MMP2P}
-        />
-        {shouldDisplayTriggers && (
-          <SidebarTriggers />
-        )}
+{/*         <CourseBreadcrumbs */}
+{/*           courseId={courseId} */}
+{/*           sectionId={section ? section.id : null} */}
+{/*           sequenceId={sequenceId} */}
+{/*           isStaff={isStaff} */}
+{/*           unitId={unitId} */}
+{/*           mmp2p={MMP2P} */}
+{/*         /> */}
+{/*         {shouldDisplayTriggers && ( */}
+{/*           <SidebarTriggers /> */}
+{/*         )} */}
       </div>
 
       <AlertList topic="sequence" />

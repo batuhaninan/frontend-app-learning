@@ -78,8 +78,11 @@ function LoadedTabPage({
             ...logistrationAlert,
           }}
         />
-        <div>
-        </div>
+       <div class="course-detail-header">
+            <div class="container-xl py-4 ">
+                <span class="course-detail-header_title">{title}</span>
+            </div>
+       </div>
         <CourseTabsNavigation tabs={tabs} className="mb-3" activeTabSlug={activeTabSlug} />
         <div className="container-sm custom-container">
           {children}

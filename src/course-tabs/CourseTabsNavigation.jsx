@@ -22,7 +22,15 @@ function CourseTabsNavigation({
               className={classNames('nav-item flex-shrink-0 nav-link', { active: slug === activeTabSlug })}
               href={url}
             >
-            {title==='Course'?'Öğrenme Yolculuğu':title==='program'}-{title}
+            {
+                slug === 'courseware' ? 'Öğrenme Yolculuğu' :
+                slug === 'progress' ? 'İlerleme' :
+                slug === 'dates' ? "Tarihler" :
+                slug === 'instructors' ? 'Eğitmenler' :
+                slug === 'instructor' ? 'Eğitmen':
+                slug === 'comments' ? 'Yorumlar' :
+                title
+            }
             </a>
           ))}
         </Tabs>
