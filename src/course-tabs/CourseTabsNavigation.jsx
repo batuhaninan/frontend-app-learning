@@ -22,7 +22,7 @@ function CourseTabsNavigation({
               className={classNames('nav-item flex-shrink-0 nav-link', { active: slug === activeTabSlug })}
               href={url}
             >
-              {title} - Seko
+            {title==='Course'?'Öğrenme Yolculuğu':title==='program'}-{title}
             </a>
           ))}
         </Tabs>

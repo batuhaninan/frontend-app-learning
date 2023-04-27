@@ -78,8 +78,10 @@ function LoadedTabPage({
             ...logistrationAlert,
           }}
         />
+        <div>
+        </div>
         <CourseTabsNavigation tabs={tabs} className="mb-3" activeTabSlug={activeTabSlug} />
-        <div className="container-xl">
+        <div className="container-sm custom-container">
           {children}
         </div>
       </main>

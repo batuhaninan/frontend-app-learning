@@ -69,13 +69,13 @@ function SequenceNavigation({
   const renderNextButton = () => {
     const { exitActive, exitText } = getCourseExitNavigation(courseId, intl);
     const buttonOnClick = isLastUnit ? goToCourseExitPage : nextSequenceHandler;
-    const buttonText = (isLastUnit && exitText) ? exitText : intl.formatMessage(messages.nextButton);
+//     const buttonText = (isLastUnit && exitText) ? exitText : intl.formatMessage(messages.nextButton);
     const disabled = isLastUnit && !exitActive;
     const nextArrow = isRtl(getLocale()) ? ChevronLeft : ChevronRight;
 
     return (
       <Button variant="link" className="next-btn" onClick={buttonOnClick} disabled={disabled} iconAfter={nextArrow}>
-        {shouldDisplayNotificationTriggerInSequence ? null : buttonText}
+{/*         {shouldDisplayNotificationTriggerInSequence ? null : buttonText} */}
       </Button>
     );
   };
@@ -85,7 +85,7 @@ function SequenceNavigation({
   return sequenceStatus === LOADED && (
     <nav id="courseware-sequenceNavigation" className={classNames('sequence-navigation', className)} style={{ width: shouldDisplayNotificationTriggerInSequence ? '90%' : null }}>
       <Button variant="link" className="previous-btn" onClick={previousSequenceHandler} disabled={isFirstUnit} iconBefore={prevArrow}>
-        {shouldDisplayNotificationTriggerInSequence ? null : intl.formatMessage(messages.previousButton)}
+{/*         {shouldDisplayNotificationTriggerInSequence ? null : intl.formatMessage(messages.previousButton)} */}
       </Button>
       {renderUnitButtons()}
       {renderNextButton()}

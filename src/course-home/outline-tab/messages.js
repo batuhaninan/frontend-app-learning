@@ -117,7 +117,7 @@ const messages = defineMessages({
   },
   resumeBlurb: {
     id: 'learning.outline.resumeBlurb',
-    defaultMessage: 'Kaldığın yerden devam et :)!!!',
+    defaultMessage: 'Kaldığın yerden devam et.',
     description: 'Text describing to the learner that they can return to the last section they visited within the course.',
   },
   resume: {
