@@ -52,7 +52,10 @@ function HasComments() {
     };
 
     const saveComment = (rate, comment) => {
-        addComment({'rate':rate,'comment':comment})
+        const formData = new FormData();
+        formData.append('rate', rate);
+        formData.append('comment', comment);
+        addComment(formData)
         console.log(`Rate: ${rate}, Comment: ${comment}`);
     };
 
@@ -70,7 +73,13 @@ function HasComments() {
     const addComment = async (dataJson) => {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/addComment`;
         // url = appendBrowserTimezoneToUrl(url);
-        const { data } = await getAuthenticatedHttpClient().post(url, dataJson);
+       
+
+        const { data } = await getAuthenticatedHttpClient().post(url, dataJson, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
         console.log("data", data)
     }
 
