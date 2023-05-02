@@ -123,7 +123,7 @@ Factory.define('courseHomeMetadata')
       Factory.build(
         'tab',
         {
-          title: 'Yorumlar',
+          title: 'Yorumlars',
           priority: 6,
           slug: 'comments',
           type: 'comments',

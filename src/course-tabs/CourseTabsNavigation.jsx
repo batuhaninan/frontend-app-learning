@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import classNames from 'classnames';
+import { getConfig } from '@edx/frontend-platform';
+import { useSelector } from 'react-redux';
 
 import messages from './messages';
 import Tabs from '../generic/tabs/Tabs';
@@ -9,6 +11,9 @@ import Tabs from '../generic/tabs/Tabs';
 function CourseTabsNavigation({
   activeTabSlug, className, tabs, intl,
 }) {
+  const {
+    courseId,
+} = useSelector(state => state.courseHome);
   return (
     <div id="courseTabsNavigation" className={classNames('course-tabs-navigation', className)}>
       <div className="container-xl">
@@ -16,7 +21,7 @@ function CourseTabsNavigation({
           className="nav-underline-tabs"
           aria-label={intl.formatMessage(messages.courseMaterial)}
         >
-          
+
           {tabs.map(({ url, title, slug }) => (
             <a
               key={slug}
@@ -33,10 +38,17 @@ function CourseTabsNavigation({
                 slug === 'outline' ? 'Öğrenme Yolculuğu' :
                 title
             }
-          
+           
             </a>
 
           ))}
+              <a
+              key='comments'
+              className={classNames('nav-item flex-shrink-0 nav-link', { active: 'comments' === activeTabSlug })}
+              href={`/learning/course/${courseId}/comments`}
+            >
+            Yorumlar
+            </a>
         </Tabs>
       </div>
     </div>
