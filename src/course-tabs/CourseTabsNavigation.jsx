@@ -32,6 +32,7 @@ function CourseTabsNavigation({
                 title
             }
             </a>
+
           ))}
         </Tabs>
       </div>
