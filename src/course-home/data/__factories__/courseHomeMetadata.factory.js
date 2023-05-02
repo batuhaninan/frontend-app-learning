@@ -109,6 +109,20 @@ Factory.define('courseHomeMetadata')
       Factory.build(
         'tab',
         {
+          title: 'Yorumlar',
+          priority: 4,
+          slug: 'comments',
+          type: 'comments',
+        },
+        {
+          courseId: id,
+          host,
+          path: 'comments',
+        },
+      ),
+      Factory.build(
+        'tab',
+        {
           title: 'Dates',
           priority: 5,
           slug: 'dates',
