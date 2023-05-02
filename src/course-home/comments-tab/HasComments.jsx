@@ -34,6 +34,26 @@ function HasComments() {
             5: "15"
         }
     }
+    const [rate, setRate] = useState(0);
+    const [comment, setComment] = useState("");
+
+    const handleRateClick = (event) => {
+        const rating = parseInt(event.target.getAttribute("data-rating"));
+        setRate(rating);
+    };
+
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+    };
+
+    const handleSaveClick = () => {
+        saveComment(rate, comment);
+    };
+
+    const saveComment = (rate, comment) => {
+        addComment({'rate':rate,'comment':comment})
+        console.log(`Rate: ${rate}, Comment: ${comment}`);
+    };
 
     useEffect(() => {
         addCommentStarColored();
@@ -44,6 +64,12 @@ function HasComments() {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/data`;
         // url = appendBrowserTimezoneToUrl(url);
         const { data } = await getAuthenticatedHttpClient().get(url);
+        console.log("data", data)
+    }
+    const addComment = async (dataJson) => {
+        let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/addComment`;
+        // url = appendBrowserTimezoneToUrl(url);
+        const { data } = await getAuthenticatedHttpClient().post(url, dataJson);
         console.log("data", data)
     }
 
@@ -181,25 +207,60 @@ function HasComments() {
                 </div>
             </div>
 
-            <div class="add_comment">
-                <div className='add-comment-wrapper'>
-                    <b className='add-comment-title'>Değerlendir</b>
+            <div className="add_comment">
+                <div className="add-comment-wrapper">
+                    <b className="add-comment-title">Değerlendir</b>
                     <input id="inputField" type="hidden" name="rate" required />
-                    <div class="reviewStars stars py-4">
-                        <i id="add-comment-star-1" data-rating="1" class="smile-icon-star l-star" aria-hidden="true"></i>
-                        <i id="add-comment-star-2" data-rating="2" class="smile-icon-star l-star" aria-hidden="true" ></i>
-                        <i id="add-comment-star-3" data-rating="3" class="smile-icon-star l-star" aria-hidden="true" ></i>
-                        <i id="add-comment-star-4" data-rating="4" class="smile-icon-star l-star" aria-hidden="true" ></i>
-                        <i id="add-comment-star-5" data-rating="5" class="smile-icon-star l-star" aria-hidden="true" ></i>
+                    <div className="reviewStars stars py-4">
+                        <i
+                            id="add-comment-star-1"
+                            data-rating="1"
+                            className={`smile-icon-star l-star ${rate >= 1 ? "selected" : ""}`}
+                            aria-hidden="true"
+                            onClick={handleRateClick}
+                        ></i>
+                        <i
+                            id="add-comment-star-2"
+                            data-rating="2"
+                            className={`smile-icon-star l-star ${rate >= 2 ? "selected" : ""}`}
+                            aria-hidden="true"
+                            onClick={handleRateClick}
+                        ></i>
+                        <i
+                            id="add-comment-star-3"
+                            data-rating="3"
+                            className={`smile-icon-star l-star ${rate >= 3 ? "selected" : ""}`}
+                            aria-hidden="true"
+                            onClick={handleRateClick}
+                        ></i>
+                        <i
+                            id="add-comment-star-4"
+                            data-rating="4"
+                            className={`smile-icon-star l-star ${rate >= 4 ? "selected" : ""}`}
+                            aria-hidden="true"
+                            onClick={handleRateClick}
+                        ></i>
+                        <i
+                            id="add-comment-star-5"
+                            data-rating="5"
+                            className={`smile-icon-star l-star ${rate >= 5 ? "selected" : ""}`}
+                            aria-hidden="true"
+                            onClick={handleRateClick}
+                        ></i>
                     </div>
-                    <div class="comment_box">
-                        <textarea name="comment" rows="6" placeholder="Yorumun (İsteğe Bağlı)"></textarea>
-
-
+                    <div className="comment_box">
+                        <textarea
+                            name="comment"
+                            rows="6"
+                            placeholder="Yorumun (İsteğe Bağlı)"
+                            value={comment}
+                            onChange={handleCommentChange}
+                        ></textarea>
                     </div>
-                    <div class="comment_footer" style={{ flexDirection: "column", gap: "10px" }}>
-
-                        <button class="comment_button" onClick={postComment}>Kaydet</button>
+                    <div className="comment_footer" style={{ flexDirection: "column", gap: "10px" }}>
+                        <button className="comment_button" onClick={handleSaveClick}>
+                            Kaydet
+                        </button>
                     </div>
                 </div>
             </div>
