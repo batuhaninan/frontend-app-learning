@@ -73,7 +73,7 @@ subscribe(APP_READY, () => {
                 </TabContainer>
               </PageRoute>
               <PageRoute path="/course/:courseId/comments">
-                <TabContainer tab="comments" fetch={fetchDiscussionTab} slice="courseHome">
+                <TabContainer tab="comments" slice="courseHome">
                   <CommentsTab />
                 </TabContainer>
               </PageRoute>

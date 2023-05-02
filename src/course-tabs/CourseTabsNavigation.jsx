@@ -16,6 +16,7 @@ function CourseTabsNavigation({
           className="nav-underline-tabs"
           aria-label={intl.formatMessage(messages.courseMaterial)}
         >
+          
           {tabs.map(({ url, title, slug }) => (
             <a
               key={slug}
