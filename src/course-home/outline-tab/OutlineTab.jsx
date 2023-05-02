@@ -166,7 +166,6 @@ function OutlineTab({ intl }) {
               <UpgradeToShiftDatesAlert model="outline" logUpgradeLinkClick={logUpgradeToShiftDatesLinkClick} />
             </>
           )}
-          <StartOrResumeCourseCard />
           <WelcomeMessage courseId={courseId} />
           {rootCourseId && (
             <>
@@ -202,7 +201,6 @@ function OutlineTab({ intl }) {
                 subscribedToReminders={selectedGoal && 'subscribedToReminders' in selectedGoal ? selectedGoal.subscribedToReminders : false}
               />
             )}
-            <CourseTools />
             { /** [MM-P2P] Experiment (conditional) */ }
             { MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
@@ -221,11 +219,7 @@ function OutlineTab({ intl }) {
                   org={org}
                 />
               )}
-            <CourseDates
-              /** [MM-P2P] Experiment */
-              mmp2p={MMP2P}
-            />
-            <CourseHandouts />
+           
           </div>
         )}
       </div>

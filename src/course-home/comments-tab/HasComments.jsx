@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { getConfig } from '@edx/frontend-platform';
+import { appendBrowserTimezoneToUrl } from '../../utils';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 function HasComments() {
+    const {
+        courseId,
+    } = useSelector(state => state.courseHome);
+
 
     const order_types = [
         { 'id': 1, 'key': '-rate', 'text': 'Puana Göre Azalan' },
@@ -27,6 +35,18 @@ function HasComments() {
         }
     }
 
+    useEffect(() => {
+        addCommentStarColored();
+        getComments();
+    }, [])
+
+    const getComments = async () => {
+        let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/data`;
+        // url = appendBrowserTimezoneToUrl(url);
+        const { data } = await getAuthenticatedHttpClient().get(url);
+        console.log("data", data)
+    }
+
     const getStarRows = (starNumber) => {
         let starRows = [];
 
@@ -39,6 +59,34 @@ function HasComments() {
         }
         return starRows;
     }
+
+
+    const addCommentStarColored = () => {
+        let stars = document.querySelectorAll(".reviewStars i");
+
+        stars.forEach(item => {
+            item.addEventListener('click', function () {
+                let rating = this.getAttribute("data-rating");
+                let input = document.getElementsByTagName("input");
+                input.value = rating;
+                return SetRatingStar(rating, stars);
+            });
+        });
+    }
+
+    function SetRatingStar(rating, stars) {
+        let len = stars.length;
+        console.log(rating);
+
+        for (let i = 0; i < len; i++) {
+            if (i < rating) {
+                stars[i].classList.replace('smile-icon-star', 'smile-icon-star-checked');
+            } else {
+                stars[i].classList.replace('smile-icon-star-checked', 'smile-icon-star');
+            }
+        }
+
+    };
 
     const postComment = () => {
         console.log("post ettm")
@@ -136,13 +184,13 @@ function HasComments() {
             <div class="add_comment">
                 <div className='add-comment-wrapper'>
                     <b className='add-comment-title'>Değerlendir</b>
-                    <input type="hidden" name="rate" required />
+                    <input id="inputField" type="hidden" name="rate" required />
                     <div class="reviewStars stars py-4">
-                        <i data-rating="1" class="smile-icon-star l-star" aria-hidden="true"></i>
-                        <i data-rating="2" class="smile-icon-star l-star" aria-hidden="true"></i>
-                        <i data-rating="3" class="smile-icon-star l-star" aria-hidden="true"></i>
-                        <i data-rating="4" class="smile-icon-star l-star" aria-hidden="true"></i>
-                        <i data-rating="5" class="smile-icon-star l-star" aria-hidden="true"></i>
+                        <i id="add-comment-star-1" data-rating="1" class="smile-icon-star l-star" aria-hidden="true"></i>
+                        <i id="add-comment-star-2" data-rating="2" class="smile-icon-star l-star" aria-hidden="true" ></i>
+                        <i id="add-comment-star-3" data-rating="3" class="smile-icon-star l-star" aria-hidden="true" ></i>
+                        <i id="add-comment-star-4" data-rating="4" class="smile-icon-star l-star" aria-hidden="true" ></i>
+                        <i id="add-comment-star-5" data-rating="5" class="smile-icon-star l-star" aria-hidden="true" ></i>
                     </div>
                     <div class="comment_box">
                         <textarea name="comment" rows="6" placeholder="Yorumun (İsteğe Bağlı)"></textarea>
