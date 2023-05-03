@@ -78,6 +78,7 @@ function HasComments() {
               'Content-Type': 'multipart/form-data'
             }
           });
+        getComments();
         console.log("data", data)
     }
 
@@ -301,7 +302,7 @@ function HasComments() {
 
                             </div>
                             <div class="message">
-                                {comment.text}
+                                {comment.comment}
                             </div>
                             <div class="comment-bottom">
                                 <div class="date comment-date">{comment.created_at}</div>
