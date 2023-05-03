@@ -65,7 +65,6 @@ function HasComments() {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/data`;
         // url = appendBrowserTimezoneToUrl(url);
         const { data } = await getAuthenticatedHttpClient().get(url);
-        comments = data['comments']
         setComments(data['comments'])
         console.log("data", data)
     }
