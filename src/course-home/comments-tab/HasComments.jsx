@@ -19,11 +19,6 @@ function HasComments() {
         { 'id': 4, 'key': 'id', 'text': 'Eskiye Yeniden' }
     ]
 
-    const comments = [
-        { id: 1, text: "çok güzel ders", starNumber: "1", ownerName: "Serkan Özdemır", time: "1 dk önce" },
-        { id: 2, text: "çok güzel ders2", starNumber: "4", ownerName: "Onur Güngör", time: "12 dk önce" }
-    ]
-
     const avgData = {
         score: "5.0",
         avgIcon: "4",
@@ -35,6 +30,8 @@ function HasComments() {
             5: "15"
         }
     }
+    const [comments, setComments] = useState([]);
+
     const [rate, setRate] = useState(0);
     const [comment, setComment] = useState("");
 
@@ -68,6 +65,8 @@ function HasComments() {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/data`;
         // url = appendBrowserTimezoneToUrl(url);
         const { data } = await getAuthenticatedHttpClient().get(url);
+        comments = data['comments']
+        setComments(data['comments'])
         console.log("data", data)
     }
     const addComment = async (dataJson) => {
@@ -297,16 +296,16 @@ function HasComments() {
                         <div class="comment_content" style={{ width: "100%" }}>
                             <div class="star-and-name-row" style={{ justifyContent: "space-between" }}>
                                 <div class="stars">
-                                    {getStarRows(comment.starNumber)}
+                                    {getStarRows(comment.rate)}
                                 </div>
-                                <h6 className='commentOwner'>{comment.ownerName}</h6>
+                                <h6 className='commentOwner'>{comment.user.name}</h6>
 
                             </div>
                             <div class="message">
                                 {comment.text}
                             </div>
                             <div class="comment-bottom">
-                                <div class="date comment-date">{comment.time}</div>
+                                <div class="date comment-date">{comment.created_at}</div>
                             </div>
                         </div>
                     </div>
