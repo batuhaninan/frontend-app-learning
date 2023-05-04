@@ -71,18 +71,31 @@ function HasComments() {
     const addComment = async (dataJson) => {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/addComment`;
         // url = appendBrowserTimezoneToUrl(url);
-       
+
 
         const { data } = await getAuthenticatedHttpClient().post(url, dataJson, {
             headers: {
-              'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-          });
+        });
         getComments();
         console.log("data", data)
     }
 
     const getStarRows = (starNumber) => {
+        let starRows = [];
+
+        for (let starIndex = 1; starIndex < 6; starIndex++) {
+            if (starNumber >= starIndex) {
+                starRows.push(<i className="st-icon-star-checked" aria-hidden="true" />);
+            } else {
+                starRows.push(<i className="st-icon-star" aria-hidden="true" />);
+            }
+        }
+        return starRows;
+    }
+
+    const getAverageStarRows = (starNumber) => {
         let starRows = [];
 
         for (let starIndex = 1; starIndex < 6; starIndex++) {
@@ -133,7 +146,7 @@ function HasComments() {
                 <div class="col-2 total-number-wrapper">
                     <span class="display-4 font-weight-bolder" style={{ fontSize: "64px", fontWeight: "bold" }}>{avgData.score}</span>
                     <div class="text-right" style={{ display: "flex", gap: "3px", paddingLeft: "14px", paddingTop: "10px" }}>
-                        {getStarRows(avgData.avgIcon)}
+                        {getAverageStarRows(avgData.avgIcon)}
                     </div>
                 </div>
 
@@ -150,7 +163,11 @@ function HasComments() {
                             </div>
                         </div>
                         <div class="col-2 text-right">
-                            {getStarRows(5)}
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -165,7 +182,11 @@ function HasComments() {
                             </div>
                         </div>
                         <div class="col-2 text-right">
-                            {getStarRows(4)}
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -180,7 +201,11 @@ function HasComments() {
                             </div>
                         </div>
                         <div class="col-2 text-right">
-                            {getStarRows(3)}
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -195,7 +220,11 @@ function HasComments() {
                             </div>
                         </div>
                         <div class="col-2 text-right">
-                            {getStarRows(2)}
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
                         </div>
                     </div>
                     <div class="row align-items-center">
@@ -210,7 +239,12 @@ function HasComments() {
                             </div>
                         </div>
                         <div class="col-2 text-right">
-                            {getStarRows(1)}
+                            <i className="st-icon-star-checked" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
+                            <i className="st-icon-star" aria-hidden="true" />
                         </div>
                     </div>
                 </div>
@@ -224,35 +258,35 @@ function HasComments() {
                         <i
                             id="add-comment-star-1"
                             data-rating="1"
-                            className={`smile-icon-star l-star ${rate >= 1 ? "selected" : ""}`}
+                            className={`smile-icon-star${rate >= 1 ? "-checked" : ""} l-star`}
                             aria-hidden="true"
                             onClick={handleRateClick}
                         ></i>
                         <i
                             id="add-comment-star-2"
                             data-rating="2"
-                            className={`smile-icon-star l-star ${rate >= 2 ? "selected" : ""}`}
+                            className={`smile-icon-star${rate >= 2 ? "-checked" : ""} l-star`}
                             aria-hidden="true"
                             onClick={handleRateClick}
                         ></i>
                         <i
                             id="add-comment-star-3"
                             data-rating="3"
-                            className={`smile-icon-star l-star ${rate >= 3 ? "selected" : ""}`}
+                            className={`smile-icon-star${rate >= 3 ? "-checked" : ""} l-star`}
                             aria-hidden="true"
                             onClick={handleRateClick}
                         ></i>
                         <i
                             id="add-comment-star-4"
                             data-rating="4"
-                            className={`smile-icon-star l-star ${rate >= 4 ? "selected" : ""}`}
+                            className={`smile-icon-star${rate >= 4 ? "-checked" : ""} l-star`}
                             aria-hidden="true"
                             onClick={handleRateClick}
                         ></i>
                         <i
                             id="add-comment-star-5"
                             data-rating="5"
-                            className={`smile-icon-star l-star ${rate >= 5 ? "selected" : ""}`}
+                            className={`smile-icon-star${rate >= 5 ? "-checked" : ""} l-star`}
                             aria-hidden="true"
                             onClick={handleRateClick}
                         ></i>
