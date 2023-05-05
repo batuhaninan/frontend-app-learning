@@ -372,11 +372,7 @@ function HasComments() {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                <DropdownButton title='Dropdowna' onSelect={handleDropdownChange}>
-                    {order_types.map(order => (
-                        <MenuItem id={order.id} eventKey={order.key}>{order.text}</MenuItem>
-                    ))}
-                </DropdownButton>
+                
             </div>
 
             <div className='comment-wrapper'>
