@@ -339,7 +339,7 @@ function HasComments() {
             <div className='title-with-dropdown'>
                 <h5>Tüm Yorumlar</h5>
 
-                <Dropdown onChange={handleDropdownChange}>
+                <Dropdown onChange={handleDropdownChange} >
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
                         Sırala <i className="icon-chevron-down"></i>
                     </Dropdown.Toggle>
@@ -350,6 +350,33 @@ function HasComments() {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                <Dropdown onChange={(e) => handleDropdownChange(e)} >
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
+                        Sırala <i className="icon-chevron-down"></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="dropdown-menu">
+                        {order_types.map(order => (
+                            <Dropdown.Item id={order.id} key={order.key} href="#">{order.text}</Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown onSelect={handleDropdownChange} >
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
+                        Sırala <i className="icon-chevron-down"></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="dropdown-menu">
+                        {order_types.map(order => (
+                            <Dropdown.Item id={order.id} key={order.key} href="#">{order.text}</Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <DropdownButton title='Dropdowna' onSelect={handleDropdownChange}>
+                    {order_types.map(order => (
+                        <MenuItem id={order.id} eventKey={order.key}>{order.text}</MenuItem>
+                    ))}
+                </DropdownButton>
             </div>
 
             <div className='comment-wrapper'>
