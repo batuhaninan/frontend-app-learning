@@ -11,7 +11,6 @@ function HasComments() {
         courseId,
     } = useSelector(state => state.courseHome);
 
-
     const order_types = [
         { 'id': 1, 'key': '-rate', 'text': 'Puana Göre Azalan' },
         { 'id': 2, 'key': 'rate', 'text': 'Puana Göre Artan' },
@@ -19,21 +18,23 @@ function HasComments() {
         { 'id': 4, 'key': 'id', 'text': 'Eskiye Yeniden' }
     ]
 
-    const avgData = {
-        score: "5.0",
-        avgIcon: "4",
-        bar: {
-            1: "50",
-            2: "10",
-            3: "20",
-            4: "15",
-            5: "15"
-        }
-    }
     const [comments, setComments] = useState([]);
 
     const [rate, setRate] = useState(0);
+    const [avarage, setAvarage] = useState(0);
+    const [avarageIcon, setAvarageIcon] = useState(0);
+    const [progress1, setProgress1] = useState(0);
+    const [progress2, setProgress2] = useState(0);
+    const [progress3, setProgress3] = useState(0);
+    const [progress4, setProgress4] = useState(0);
+    const [progress5, setProgress5] = useState(0);
+
     const [comment, setComment] = useState("");
+
+    useEffect(() => {
+        addCommentStarColored();
+        getComments();
+    }, [])
 
     const handleRateClick = (event) => {
         const rating = parseInt(event.target.getAttribute("data-rating"));
@@ -56,18 +57,22 @@ function HasComments() {
         console.log(`Rate: ${rate}, Comment: ${comment}`);
     };
 
-    useEffect(() => {
-        addCommentStarColored();
-        getComments();
-    }, [])
-
     const getComments = async () => {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/data`;
         // url = appendBrowserTimezoneToUrl(url);
         const { data } = await getAuthenticatedHttpClient().get(url);
         setComments(data['comments'])
+        setAvarage(data["bar"]["average"])
+        setAvarageIcon(data["bar"]["avg_icon"])
+        setProgress1(data["bar"]["1"])
+        setProgress2(data["bar"]["2"])
+        setProgress3(data["bar"]["3"])
+        setProgress4(data["bar"]["4"])
+        setProgress5(data["bar"]["5"])
+
         console.log("data", data)
     }
+
     const addComment = async (dataJson) => {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/addComment`;
         // url = appendBrowserTimezoneToUrl(url);
@@ -135,18 +140,42 @@ function HasComments() {
         }
 
     };
+    function handleDropdownChange(event) {
 
-    const postComment = () => {
-        console.log("post ettm")
+        let tempSort = [];
+        let sortableData = comments;
+
+        if (event.target.key === "created_at") {
+            tempSort = [...sortableData].sort((a, b) => {
+                return new Date(a.created_at) > new Date(a.created_at) ? -1 : 1;
+            })
+        }
+        if (event.target.key === "-created_at") {
+            tempSort = [...sortableData].sort((a, b) => {
+                return new Date(a.created_at) > new Date(a.created_at) ? 1 : -1;
+            })
+        }
+        if (event.target.key === "rate") {
+            tempSort = [...sortableData].sort((a, b) => {
+                return a.rate > b.rate ? 1 : -1;
+            })
+        }
+        if (event.target.key === "-rate") {
+            tempSort = [...sortableData].sort((a, b) => {
+                return a.rate > b.rate ? -1 : 1;
+            })
+        }
+
+        setComments(tempSort);
     }
 
     return (
         <div className="comments_header">
             <div class="d-flex pg-wrapper" style={{ width: "100%" }}>
                 <div class="col-2 total-number-wrapper">
-                    <span class="display-4 font-weight-bolder" style={{ fontSize: "64px", fontWeight: "bold" }}>{avgData.score}</span>
+                    <span class="display-4 font-weight-bolder" style={{ fontSize: "64px", fontWeight: "bold" }}>{avarage}</span>
                     <div class="text-right" style={{ display: "flex", gap: "3px", paddingLeft: "14px", paddingTop: "10px" }}>
-                        {getAverageStarRows(avgData.avgIcon)}
+                        {getAverageStarRows(avarageIcon)}
                     </div>
                 </div>
 
@@ -155,8 +184,8 @@ function HasComments() {
                         <div class="col-10">
                             <div class="progress" style={{ height: "8px" }}>
                                 <div class="progress-bar" role="progressbar"
-                                    style={{ width: `${avgData.bar[5]}%` }}
-                                    aria-valuenow={avgData.bar[5]}
+                                    style={{ width: `${progress5}%` }}
+                                    aria-valuenow={progress5}
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -174,8 +203,8 @@ function HasComments() {
                         <div class="col-10">
                             <div class="progress" style={{ height: "8px" }}>
                                 <div class="progress-bar" role="progressbar"
-                                    style={{ width: `${avgData.bar[4]}%` }}
-                                    aria-valuenow={avgData.bar[4]}
+                                    style={{ width: `${progress4}%` }}
+                                    aria-valuenow={progress4}
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -193,8 +222,8 @@ function HasComments() {
                         <div class="col-10">
                             <div class="progress" style={{ height: "8px" }}>
                                 <div class="progress-bar" role="progressbar"
-                                    style={{ width: `${avgData.bar[3]}%` }}
-                                    aria-valuenow={avgData.bar[3]}
+                                    style={{ width: `${progress3}%` }}
+                                    aria-valuenow={progress3}
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -212,8 +241,8 @@ function HasComments() {
                         <div class="col-10">
                             <div class="progress" style={{ height: "8px" }}>
                                 <div class="progress-bar" role="progressbar"
-                                    style={{ width: `${avgData.bar[2]}%` }}
-                                    aria-valuenow={avgData.bar[2]}
+                                    style={{ width: `${progress2}%` }}
+                                    aria-valuenow={progress2}
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -231,8 +260,8 @@ function HasComments() {
                         <div class="col-10">
                             <div class="progress" style={{ height: "8px" }}>
                                 <div class="progress-bar" role="progressbar"
-                                    style={{ width: `${avgData.bar[1]}%` }}
-                                    aria-valuenow={avgData.bar[1]}
+                                    style={{ width: `${progress1}%` }}
+                                    aria-valuenow={progress1}
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -240,7 +269,6 @@ function HasComments() {
                         </div>
                         <div class="col-2 text-right">
                             <i className="st-icon-star-checked" aria-hidden="true" />
-                            <i className="st-icon-star" aria-hidden="true" />
                             <i className="st-icon-star" aria-hidden="true" />
                             <i className="st-icon-star" aria-hidden="true" />
                             <i className="st-icon-star" aria-hidden="true" />
@@ -311,7 +339,7 @@ function HasComments() {
             <div className='title-with-dropdown'>
                 <h5>Tüm Yorumlar</h5>
 
-                <Dropdown>
+                <Dropdown onChange={handleDropdownChange}>
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
                         Sırala <i className="icon-chevron-down"></i>
                     </Dropdown.Toggle>
