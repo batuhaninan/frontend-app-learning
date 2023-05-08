@@ -397,7 +397,7 @@ function HasComments() {
 
             <div>
                 {/* Your other component content */}
-                <Toast show={showToaster} onClose={handleToasterClose} delay={3000} autohide>
+                <Toast show={showToaster} delay={3000} autohide>
                     <Toast.Header closeButton={false} bg={toasterStatus === 'success' ? 'success' : 'danger'}>
                         <strong className="me-auto">{toasterStatus === 'success' ? 'Success' : 'Error'}</strong>
                     </Toast.Header>

@@ -57,7 +57,7 @@ function CourseInstructorsTab() {
         <div class="instructors">
             {loading ?
                 <div class="row">
-                    {allInstructors.length > 0 && allInstructors.map(instructor => (
+                    {allInstructors && allInstructors.length > 0 && allInstructors.map(instructor => (
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="instructor card">
                                 <a style="color:#4229E1;" href={instructor.linkedin} target="_blank">
@@ -72,7 +72,7 @@ function CourseInstructorsTab() {
                             </div>
                         </div>
                     ))}
-                    {allInstructors.length < 1 &&
+                    {allInstructors && allInstructors.length < 1 &&
                         <span>Gösterlecek eğıtmen bulunamadı.</span>
                     }
                 </div>
