@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import Dropdown from 'react-bootstrap/Dropdown';
+import Toast from 'react-bootstrap/Toast';
+
 import { getConfig } from '@edx/frontend-platform';
-import { appendBrowserTimezoneToUrl } from '../../utils';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 function HasComments() {
@@ -30,6 +31,9 @@ function HasComments() {
     const [progress5, setProgress5] = useState(0);
 
     const [comment, setComment] = useState("");
+
+    const [showToaster, setShowToaster] = useState(false);
+    const [toasterStatus, setToasterStatus] = useState();
 
     useEffect(() => {
         addCommentStarColored();
@@ -77,12 +81,20 @@ function HasComments() {
         let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/comments/addComment`;
         // url = appendBrowserTimezoneToUrl(url);
 
-
         const { data } = await getAuthenticatedHttpClient().post(url, dataJson, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
+
+        if (data.code === 200) {
+            setShowToaster(true);
+            setToasterStatus("success");
+        } else {
+            setShowToaster(true);
+            setToasterStatus("danger");
+        }
+
         getComments();
         console.log("data", data)
     }
@@ -140,6 +152,7 @@ function HasComments() {
         }
 
     };
+
     function handleDropdownChange(event) {
 
         let tempSort = [];
@@ -361,6 +374,17 @@ function HasComments() {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                <Dropdown onSelect={(e) => handleDropdownChange(e)} >
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
+                        Sırala <i className="icon-chevron-down"></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="dropdown-menu">
+                        {order_types.map(order => (
+                            <Dropdown.Item id={order.id} key={order.key}>{order.text}</Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Dropdown onSelect={handleDropdownChange} >
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className="comment_button-order dropdown-toggle">
                         Sırala <i className="icon-chevron-down"></i>
@@ -368,11 +392,11 @@ function HasComments() {
 
                     <Dropdown.Menu className="dropdown-menu">
                         {order_types.map(order => (
-                            <Dropdown.Item id={order.id} key={order.key} href="#">{order.text}</Dropdown.Item>
+                            <Dropdown.Item id={order.id} key={order.key}>{order.text}</Dropdown.Item>
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                
+
             </div>
 
             <div className='comment-wrapper'>
@@ -396,6 +420,13 @@ function HasComments() {
                     </div>
                 ))}
             </div>
+
+            <Toast onClose={() => setShowToaster(false)} show={showToaster} delay={3000} autohide bg={toasterStatus}>
+                <Toast.Body>
+                    <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} alt=""/>
+                    <span>{toasterStatus === "danger" ? "Zaten bir yorumunuz mevcut" : "Yorumunuz başarıyla kaydedildi."}</span>
+                </Toast.Body>
+            </Toast>
         </div>
     );
 }
