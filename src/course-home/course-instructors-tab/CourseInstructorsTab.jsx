@@ -1,14 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { getConfig } from '@edx/frontend-platform';
 
 function CourseInstructorsTab() {
     const { courseId } = useSelector(state => state.courseHome);
     const [loading, setLoading] = useState(true);
 
-    const [allInstructors, setAllInstructors] = useState([]);
+    const [allInstructors, setAllInstructors] = useState([
+        {
+            linkedin: "https://www.linkedin.com/in/instructor1",
+            cover_image: "instructor1.jpg",
+            name: "John Doe",
+            title: "Senior Developer",
+            bio: "John Doe is a senior developer with over 10 years of experience in web development. He specializes in front-end frameworks and has a passion for creating user-friendly interfaces.",
+        },
+        {
+            linkedin: "https://www.linkedin.com/in/instructor2",
+            cover_image: "instructor2.jpg",
+            name: "Jane Smith",
+            title: "Data Scientist",
+            bio: "Jane Smith is a data scientist with expertise in machine learning and statistical analysis. She has worked on various projects involving big data and enjoys finding insights from complex datasets.",
+        },
+        {
+            linkedin: "https://www.linkedin.com/in/instructor3",
+            cover_image: "instructor3.jpg",
+            name: "Alex Johnson",
+            title: "UX Designer",
+            bio: "Alex Johnson is a UX designer who focuses on creating intuitive and visually appealing interfaces. With a background in psychology, he understands the importance of user experience in driving engagement.",
+        },
+    ]);
 
     useEffect(() => {
-        getInstructors();
+        // getInstructors();
     }, [])
 
     const getInstructors = async (dataJson) => {
@@ -49,7 +72,7 @@ function CourseInstructorsTab() {
                             </div>
                         </div>
                     ))}
-                    {allInstructors.length < 1 && 
+                    {allInstructors.length < 1 &&
                         <span>Gösterlecek eğıtmen bulunamadı.</span>
                     }
                 </div>

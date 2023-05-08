@@ -42,12 +42,19 @@ function CourseTabsNavigation({
             </a>
 
           ))}
-              <a
+            <a
               key='comments'
               className={classNames('nav-item flex-shrink-0 nav-link', { active: 'comments' === activeTabSlug })}
               href={`/learning/course/${courseId}/comments`}
             >
             Yorumlar
+            </a>
+            <a
+              key='course-instructors'
+              className={classNames('nav-item flex-shrink-0 nav-link', { active: 'course-instructors' === activeTabSlug })}
+              href={`/learning/course/${courseId}/course-instructors`}
+            >
+            Eğitmenler
             </a>
         </Tabs>
       </div>
