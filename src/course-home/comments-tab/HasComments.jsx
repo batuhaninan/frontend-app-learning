@@ -421,9 +421,9 @@ function HasComments() {
                 ))}
             </div>
 
-            <Toast onClose={() => setShowToaster(false)} show={showToaster} delay={3000} autohide bg={toasterStatus}>
+            <Toast onClose={() => setShowToaster(false)} show={showToaster} delay={3000} autohide bg={toasterStatus} className='onurserkan'>
                 <Toast.Body>
-                    <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} alt=""/>
+                    <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} alt="" className='alkaan'/>
                     <span>{toasterStatus === "danger" ? "Zaten bir yorumunuz mevcut" : "Yorumunuz başarıyla kaydedildi."}</span>
                 </Toast.Body>
             </Toast>

@@ -17,6 +17,7 @@ import { Helmet } from 'react-helmet';
 import { fetchDiscussionTab, fetchLiveTab } from './course-home/data/thunks';
 import DiscussionTab from './course-home/discussion-tab/DiscussionTab';
 import CommentsTab from './course-home/comments-tab/CommentsTab';
+import CourseInstructorsTab from './course-home/course-instructors-tab/CourseInstructorsTab';
 
 import appMessages from './i18n';
 import { UserMessagesProvider } from './generic/user-messages';
@@ -75,6 +76,11 @@ subscribe(APP_READY, () => {
               <PageRoute path="/course/:courseId/comments">
                 <TabContainer tab="comments" fetch={fetchDatesTab} slice="courseHome">
                   <CommentsTab />
+                </TabContainer>
+              </PageRoute>
+              <PageRoute path="/course/:courseId/course-instructors">
+                <TabContainer tab="course-instructors" fetch={fetchDatesTab} slice="courseHome">
+                  <CourseInstructorsTab/>
                 </TabContainer>
               </PageRoute>
               <PageRoute
