@@ -58,3 +58,11 @@ div.instructors {
 .instructor .link:hover {
     text-decoration: none;
 }
+
+.instructorBio {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    text-align: center;
+    font-size: 12px;
+}

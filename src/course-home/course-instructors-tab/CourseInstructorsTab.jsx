@@ -6,35 +6,13 @@ function CourseInstructorsTab() {
     const { courseId } = useSelector(state => state.courseHome);
     const [loading, setLoading] = useState(true);
 
-    const [allInstructors, setAllInstructors] = useState([
-        {
-            linkedin: "https://www.linkedin.com/in/instructor1",
-            cover_image: "instructor1.jpg",
-            name: "John Doe",
-            title: "Senior Developer",
-            bio: "John Doe is a senior developer with over 10 years of experience in web development. He specializes in front-end frameworks and has a passion for creating user-friendly interfaces.",
-        },
-        {
-            linkedin: "https://www.linkedin.com/in/instructor2",
-            cover_image: "instructor2.jpg",
-            name: "Jane Smith",
-            title: "Data Scientist",
-            bio: "Jane Smith is a data scientist with expertise in machine learning and statistical analysis. She has worked on various projects involving big data and enjoys finding insights from complex datasets.",
-        },
-        {
-            linkedin: "https://www.linkedin.com/in/instructor3",
-            cover_image: "instructor3.jpg",
-            name: "Alex Johnson",
-            title: "UX Designer",
-            bio: "Alex Johnson is a UX designer who focuses on creating intuitive and visually appealing interfaces. With a background in psychology, he understands the importance of user experience in driving engagement.",
-        },
-    ]);
+    const [allInstructors, setAllInstructors] = useState();
 
     useEffect(() => {
-        // getInstructors();
+        getInstructors();
     }, [])
 
-    const getInstructors = async (dataJson) => {
+    const getInstructors = async () => {
         setLoading(true);
 
         let url = `${getConfig().CMS_URL}/api/v1/cms/course/instructor/${courseId}`;
@@ -58,26 +36,26 @@ function CourseInstructorsTab() {
             {loading ?
                 <div class="row">
                     {allInstructors && allInstructors.length > 0 && allInstructors.map(instructor => (
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <div class="instructor card">
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-4">
+                            <div class="instructor card" style={{ padding: "25px 35px", borderRadius: "16px", boxShadow: "0px 4px 16px rgb(209 219 228 / 40%)" }}>
                                 <a style={{ color: "#4229E1" }} href={instructor.linkedin} target="_blank">
-                                    <i class="icon-linkedin"></i>
+                                    <img src="./assets/img/linked.png" alt="icon" style={{ width: "24px", alignSelf: "end" }} />
                                 </a>
-                                <img class="avatar" src={instructor.cover_image} alt={instructor.name} />
+                                <img class="avatar" src={instructor.cover_image} alt={instructor.name} style={{ borderRadius: "50%", paddingBottom: "24px" }} />
 
-                                <h5 class="name">{instructor.name}</h5>
-                                <span class="title">{instructor.title}</span>
-                                <p class="text" style={{ height: "170px", overflowX: "hidden", overflowY: "scroll" }}>{instructor.bio}</p>
+                                <h5 class="name" style={{ marginBottom: "4px", fontSize: "13px", fontWeight: "bold", textAlign: "center" }}>{instructor.name}</h5>
+                                <span class="title" style={{ paddingBottom: "16px", fontSize: "13px", textAlign: "center" }}>{instructor.title}</span>
+                                <p class="text instructorBio">{instructor.bio}</p>
 
                             </div>
                         </div>
                     ))}
                     {allInstructors && allInstructors.length < 1 &&
-                        <span>Gösterlecek eğıtmen bulunamadı.</span>
+                        <span>Gösterilecek eğitmen bulunamadı.</span>
                     }
                 </div>
                 :
-                <span>Yüklenıyor</span>
+                <span>Yükleniyor</span>
             }
 
         </div>
