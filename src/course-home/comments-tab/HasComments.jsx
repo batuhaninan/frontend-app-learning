@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Toast, ToastContainer } from 'react-toastify';
+import { Toast } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
@@ -394,18 +395,16 @@ function HasComments() {
                 <NoComments />
             }
 
-            <ToastContainer className="p-3" position={"top-end"}>
-                <Toast show={showToaster} style={{ borderRadius: "20px" }}>
-                    <Toast.Body style={{ display: "flex", gap: "20px", padding: "15px 30px", background: toasterStatus === "danger" ? "#FCD8DB" : "#F2F9D4", borderRadius: "20px" }}>
-                        <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} width={15} className="rounded me-2" alt="" />
-                        <span style={{ fontSize: "13px", fontFamily: "Satoshi" }}>
-                            {toasterStatus === "danger" ?
-                                "Zaten bir yorumunuz mevcut!" :
-                                "Yorumunuz başarılı şekilde kaydedildi."}
-                        </span>
-                    </Toast.Body>
-                </Toast>
-            </ToastContainer>
+            <Toast show={showToaster} style={{ borderRadius: "20px" }}>
+                <Toast.Body style={{ display: "flex", gap: "20px", padding: "15px 30px", background: toasterStatus === "danger" ? "#FCD8DB" : "#F2F9D4", borderRadius: "20px" }}>
+                    <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} width={15} className="rounded me-2" alt="" />
+                    <span style={{ fontSize: "13px", fontFamily: "Satoshi" }}>
+                        {toasterStatus === "danger" ?
+                            "Zaten bir yorumunuz mevcut!" :
+                            "Yorumunuz başarılı şekilde kaydedildi."}
+                    </span>
+                </Toast.Body>
+            </Toast>
         </>
 
     );
