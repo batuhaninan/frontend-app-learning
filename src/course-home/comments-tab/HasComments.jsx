@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Toast } from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getConfig } from '@edx/frontend-platform';
