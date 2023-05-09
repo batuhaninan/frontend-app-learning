@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Toast, ToastContainer } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
