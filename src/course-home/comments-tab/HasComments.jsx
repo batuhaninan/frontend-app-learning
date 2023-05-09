@@ -188,110 +188,110 @@ function HasComments() {
 
     return (
         <>
-            {comments.length > 0 ?
+            {comments.length > 0 ? (
                 <div className="comments_header">
-                    <div class="d-flex pg-wrapper" style={{ width: "100%" }}>
-                        <div class="col-2 total-number-wrapper">
-                            <span class="display-4 font-weight-bolder" style={{ fontSize: "64px", fontWeight: "bold" }}>{avarage}</span>
-                            <div class="text-right" style={{ display: "flex", gap: "3px", paddingLeft: "14px", paddingTop: "10px" }}>
+                    <div className="d-flex pg-wrapper" style={{ width: "100%" }}>
+                        <div className="col-2 total-number-wrapper">
+                            <span className="display-4 font-weight-bolder" style={{ fontSize: "64px", fontWeight: "bold" }}>{avarage}</span>
+                            <div className="text-right" style={{ display: "flex", gap: "3px", paddingLeft: "14px", paddingTop: "10px" }}>
                                 {getAverageStarRows(avarageIcon)}
                             </div>
                         </div>
 
-                        <div class="flex-grow-1 col-10">
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <div class="progress" style={{ height: "8px" }}>
-                                        <div class="progress-bar" role="progressbar"
+                        <div className="flex-grow-1 col-10">
+                            <div className="row align-items-center">
+                                <div className="col-10">
+                                    <div className="progress" style={{ height: "8px" }}>
+                                        <div className="progress-bar" role="progressbar"
                                             style={{ width: `${progress5}%` }}
                                             aria-valuenow={progress5}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        />
+                                        ></div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                <div className="col-2 text-right">
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <div class="progress" style={{ height: "8px" }}>
-                                        <div class="progress-bar" role="progressbar"
+                            <div className="row align-items-center">
+                                <div className="col-10">
+                                    <div className="progress" style={{ height: "8px" }}>
+                                        <div className="progress-bar" role="progressbar"
                                             style={{ width: `${progress4}%` }}
                                             aria-valuenow={progress4}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        />
+                                        ></div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
+                                <div className="col-2 text-right">
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <div class="progress" style={{ height: "8px" }}>
-                                        <div class="progress-bar" role="progressbar"
+                            <div className="row align-items-center">
+                                <div className="col-10">
+                                    <div className="progress" style={{ height: "8px" }}>
+                                        <div className="progress-bar" role="progressbar"
                                             style={{ width: `${progress3}%` }}
                                             aria-valuenow={progress3}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        />
+                                        ></div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
+                                <div className="col-2 text-right">
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <div class="progress" style={{ height: "8px" }}>
-                                        <div class="progress-bar" role="progressbar"
+                            <div className="row align-items-center">
+                                <div className="col-10">
+                                    <div className="progress" style={{ height: "8px" }}>
+                                        <div className="progress-bar" role="progressbar"
                                             style={{ width: `${progress2}%` }}
                                             aria-valuenow={progress2}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        />
+                                        ></div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
+                                <div className="col-2 text-right">
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <div class="progress" style={{ height: "8px" }}>
-                                        <div class="progress-bar" role="progressbar"
+                            <div className="row align-items-center">
+                                <div className="col-10">
+                                    <div className="progress" style={{ height: "8px" }}>
+                                        <div className="progress-bar" role="progressbar"
                                             style={{ width: `${progress1}%` }}
                                             aria-valuenow={progress1}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        />
+                                        ></div>
                                     </div>
                                 </div>
-                                <div class="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
-                                    <i className="st-icon-star" aria-hidden="true" />
+                                <div className="col-2 text-right">
+                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -372,27 +372,26 @@ function HasComments() {
 
                     <div className='comment-wrapper'>
                         {comments && comments.map(comment => (
-                            <div class="comment" key={comment.id}>
-                                <div class="comment_content" style={{ width: "100%" }}>
-                                    <div class="star-and-name-row" style={{ justifyContent: "space-between" }}>
-                                        <div class="stars">
+                            <div className="comment" key={comment.id}>
+                                <div className="comment_content" style={{ width: "100%" }}>
+                                    <div className="star-and-name-row" style={{ justifyContent: "space-between" }}>
+                                        <div className="stars">
                                             {getStarRows(comment.rate)}
                                         </div>
                                         <h6 className='commentOwner'>{comment.user.name}</h6>
-
                                     </div>
-                                    <div class="message">
+                                    <div className="message">
                                         {comment.comment}
                                     </div>
-                                    <div class="comment-bottom">
-                                        <div class="date comment-date">{comment.created_at}</div>
+                                    <div className="comment-bottom">
+                                        <div className="date comment-date">{comment.created_at}</div>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-                :
+:
                 <NoComments />
             }
 
@@ -408,10 +407,8 @@ function HasComments() {
                     </Toast.Footer>
                 </Toast>
             </div>
-        </>
-
-    );
+            );
 }
 
-export default HasComments;
+            export default HasComments;
 
