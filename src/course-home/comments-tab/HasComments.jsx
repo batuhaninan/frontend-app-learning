@@ -188,7 +188,7 @@ function HasComments() {
 
     return (
         <>
-            {comments.length > 0 ? (
+            {comments.length > 0 ?
                 <div className="comments_header">
                     <div className="d-flex pg-wrapper" style={{ width: "100%" }}>
                         <div className="col-2 total-number-wrapper">
@@ -207,15 +207,15 @@ function HasComments() {
                                             aria-valuenow={progress5}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        ></div>
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
                                 </div>
                             </div>
                             <div className="row align-items-center">
@@ -226,15 +226,15 @@ function HasComments() {
                                             aria-valuenow={progress4}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        ></div>
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
                                 </div>
                             </div>
                             <div className="row align-items-center">
@@ -245,15 +245,15 @@ function HasComments() {
                                             aria-valuenow={progress3}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        ></div>
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
                                 </div>
                             </div>
                             <div className="row align-items-center">
@@ -264,15 +264,15 @@ function HasComments() {
                                             aria-valuenow={progress2}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        ></div>
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
                                 </div>
                             </div>
                             <div className="row align-items-center">
@@ -283,15 +283,15 @@ function HasComments() {
                                             aria-valuenow={progress1}
                                             aria-valuemin="0"
                                             aria-valuemax="100"
-                                        ></div>
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-2 text-right">
-                                    <i className="st-icon-star-checked" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
-                                    <i className="st-icon-star" aria-hidden="true"></i>
+                                    <i className="st-icon-star-checked" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
+                                    <i className="st-icon-star" aria-hidden="true" />
                                 </div>
                             </div>
                         </div>
@@ -379,6 +379,7 @@ function HasComments() {
                                             {getStarRows(comment.rate)}
                                         </div>
                                         <h6 className='commentOwner'>{comment.user.name}</h6>
+
                                     </div>
                                     <div className="message">
                                         {comment.comment}
@@ -391,7 +392,7 @@ function HasComments() {
                         ))}
                     </div>
                 </div>
-:
+                :
                 <NoComments />
             }
 
@@ -407,8 +408,10 @@ function HasComments() {
                     </Toast.Footer>
                 </Toast>
             </div>
-            );
+        </>
+
+    );
 }
 
-            export default HasComments;
+export default HasComments;
 
