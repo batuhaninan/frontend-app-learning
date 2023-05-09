@@ -18,8 +18,8 @@ function HasComments() {
     const order_types = [
         { 'id': 1, 'key': '-rate', 'text': 'Puana Göre Azalan' },
         { 'id': 2, 'key': 'rate', 'text': 'Puana Göre Artan' },
-        { 'id': 3, 'key': '-id', 'text': 'Yeniden Eskiye' },
-        { 'id': 4, 'key': 'id', 'text': 'Eskiye Yeniden' }
+        { 'id': 3, 'key': '-created_at', 'text': 'Yeniden Eskiye' },
+        { 'id': 4, 'key': 'created_at', 'text': 'Eskiden Yeniye' }
     ]
 
     const [comments, setComments] = useState([]);
