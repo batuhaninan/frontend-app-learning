@@ -404,7 +404,7 @@ function HasComments() {
                     </Toast.Header>
                     <Toast.Body>{toasterStatus === 'success' ? 'Operation completed successfully' : 'An error occurred'}</Toast.Body>
                     <Toast.Footer>
-                        <Button variant={toasterStatus === 'success' ? 'success' : 'danger'} onClick={handleToasterClose}>Close</Button>
+                        <Button variant={toasterStatus === 'success' ? 'success' : 'danger'}>Close</Button>
                     </Toast.Footer>
                 </Toast>
             </div>
