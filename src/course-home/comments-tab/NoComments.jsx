@@ -40,12 +40,7 @@ function NoComments() {
             }
         });
 
-        return (
-            <div class="comment_wrapper">
-                 <HasComments />
-            </div>
-        );
-
+        window.location.reload()
        
     }
     return (
