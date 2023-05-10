@@ -14,18 +14,22 @@ function CourseInstructorsTab() {
 
     const getInstructors = async () => {
         setLoading(true);
+        const apiKey = process.env.CMS_API_KEY;
+        const CMS_URL = process.env.CMS_URL;
 
         console.log("getConfig()", getConfig())
         console.log("getConfig().CMS_URL", getConfig().CMS_URL)
         console.log("getConfig().CMS_API_KEY", getConfig().CMS_API_KEY)
+        console.log("apiKey", apiKey)
+        console.log("CMS_URL", CMS_URL)
         console.log("courseId", courseId)
 
-        let url = `${getConfig().CMS_URL}/api/v1/cms/course/instructor/${courseId}`;
+        let url = `${CMS_URL}/api/v1/cms/course/instructor/${courseId}`;
 
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': `${getConfig().CMS_API_KEY}`
+                'x-api-key': `${apiKey}`
             },
         });
 
