@@ -58,7 +58,6 @@ function HasComments() {
         formData.append('rate', rate);
         formData.append('comment', comment);
         addComment(formData)
-        console.log(`Rate: ${rate}, Comment: ${comment}`);
     };
 
     const getComments = async () => {
