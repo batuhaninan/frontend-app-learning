@@ -15,6 +15,11 @@ function CourseInstructorsTab() {
     const getInstructors = async () => {
         setLoading(true);
 
+        console.log("getConfig()", getConfig())
+        console.log("getConfig().CMS_URL", getConfig().CMS_URL)
+        console.log("getConfig().CMS_API_KEY", getConfig().CMS_API_KEY)
+        console.log("courseId", courseId)
+
         let url = `${getConfig().CMS_URL}/api/v1/cms/course/instructor/${courseId}`;
 
         const response = await fetch(url, {
@@ -23,6 +28,8 @@ function CourseInstructorsTab() {
                 'x-api-key': `${getConfig().CMS_API_KEY}`
             },
         });
+
+        console.log("response", response)
 
         if (response.code === 200) {
             setAllInstructors(response.data)

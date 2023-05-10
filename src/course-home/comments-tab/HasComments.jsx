@@ -2,19 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Dropdown from 'react-bootstrap/Dropdown';
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
+import { Toast, ToastContainer } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 import NoComments from './NoComments';
 
 function HasComments() {
-    const {
-        courseId,
-    } = useSelector(state => state.courseHome);
+    const { courseId } = useSelector(state => state.courseHome);
 
     const order_types = [
         { 'id': 1, 'key': '-rate', 'text': 'Puana Göre Azalan' },
@@ -396,16 +392,18 @@ function HasComments() {
                 :
                 <NoComments />
             }
-            <Toast show={showToaster} style={{ borderRadius: "20px" }}>
-                <Toast.Body style={{ display: "flex", gap: "20px", padding: "15px 30px", background: toasterStatus === "danger" ? "#FCD8DB" : "#F2F9D4", borderRadius: "20px" }}>
-                    <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} width={15} className="rounded me-2" alt="" />
-                    <span style={{ fontSize: "13px", fontFamily: "Satoshi" }}>
-                        {toasterStatus === "danger" ?
-                            "Zaten bir yorumunuz mevcut!" :
-                            "Yorumunuz başarılı şekilde kaydedildi."}
-                    </span>
-                </Toast.Body>
-            </Toast>
+            <ToastContainer className={'p-3'} position={"top-end"}>
+                <Toast show={showToaster} style={{ borderRadius: "20px" }}>
+                    <Toast.Body style={{ display: "flex", gap: "20px", padding: "15px 30px", background: toasterStatus === "danger" ? "#FCD8DB" : "#F2F9D4", borderRadius: "20px" }}>
+                        <img src={toasterStatus === "danger" ? "./assets/img/ericon.png" : "./assets/img/sucicon.png"} width={15} className="rounded me-2" alt="" />
+                        <span style={{ fontSize: "13px", fontFamily: "Satoshi" }}>
+                            {toasterStatus === "danger" ?
+                                "Zaten bir yorumunuz mevcut!" :
+                                "Yorumunuz başarılı şekilde kaydedildi."}
+                        </span>
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
 
     );
