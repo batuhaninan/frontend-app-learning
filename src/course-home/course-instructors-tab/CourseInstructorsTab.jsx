@@ -25,14 +25,26 @@ function CourseInstructorsTab() {
             },
         });
 
-        console.log("response", response)
+        if (response.ok) {
+            const data = await response.json();
+            // Use the data from the response
+            console.log(data.data);
+            // Perform another job
+            if (data.code === 200) {
+                setAllInstructors(data.data)
+            }
+            else {
+                console.log('Eğitmen yok')
+            }
 
-        if (response.code === 200) {
-            setAllInstructors(response.data)
+        } else {
+            // Handle the error
+            throw new Error('Request failed');
         }
-
         setLoading(false);
     }
+
+
 
     return (
         <div class="instructors">
@@ -53,9 +65,7 @@ function CourseInstructorsTab() {
                             </div>
                         </div>
                     ))}
-                    {allInstructors && allInstructors.length < 1 &&
-                        <span>Gösterilecek eğitmen bulunamadı.</span>
-                    }
+                    {allInstructors && allInstructors.length < 1 && <span>Gösterilecek eğitmen bulunamadı.</span>}
                 </div>
                 :
                 <span>Yükleniyor</span>
