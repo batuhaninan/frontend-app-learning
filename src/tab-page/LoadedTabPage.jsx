@@ -15,6 +15,7 @@ import useLogistrationAlert from '../alerts/logistration-alert';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ProductTours from '../product-tours/ProductTours';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LeftImg from "./assets/img/left.png";
 
 function LoadedTabPage({
   activeTabSlug,
@@ -82,7 +83,7 @@ function LoadedTabPage({
         <div class="course-detail-header">
           <div class="container-xl py-4 ">
             <a href="https://pupilica.com" target="_blank" rel="noopener noreferrer">
-              <React.SvgIcon icon={faArrowLeft} alt="Arrow Left Icon" />
+              <img src={LeftImg} alt="Arrow Left" />
             </a>
 
             <span class="course-detail-header_title">{title}</span>
