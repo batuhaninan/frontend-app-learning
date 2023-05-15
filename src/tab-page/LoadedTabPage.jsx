@@ -82,7 +82,7 @@ function LoadedTabPage({
         <div class="course-detail-header">
           <div class="container-xl py-4 ">
             <a href="https://pupilica.com" target="_blank" rel="noopener noreferrer">
-              <img src={`data:image/svg+xml;utf8,${encodeURIComponent(FontAwesomeIcon.icon(faArrowLeft).html[0])}`} alt="Arrow Left" />
+              <React.SvgIcon icon={faArrowLeft} alt="Arrow Left Icon" />
             </a>
 
             <span class="course-detail-header_title">{title}</span>
