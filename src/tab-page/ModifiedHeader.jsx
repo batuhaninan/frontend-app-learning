@@ -15,7 +15,7 @@ const replaceHref = () => {
 };
 
 const HeaderWrapper = ({ courseOrg, courseNumber, courseTitle, showUserDropdown }) => {
-  replaceHref(); // Call the replaceHref function to modify the href attributes
+  //replaceHref(); // Call the replaceHref function to modify the href attributes
 
   return (
     <Header
