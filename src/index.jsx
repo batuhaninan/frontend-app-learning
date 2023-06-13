@@ -7,7 +7,8 @@ import {
   getConfig,
 } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage, PageRoute } from '@edx/frontend-platform/react';
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import ReactDOM from 'react-dom';
 import { Switch } from 'react-router-dom';
 
