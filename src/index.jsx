@@ -53,7 +53,6 @@ const replaceHref = () => {
 };
 
 subscribe(APP_READY, () => {
-  replaceHref();
   ReactDOM.render(
     <AppProvider store={initializeStore()}>
       <Helmet>
