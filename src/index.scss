@@ -418,7 +418,8 @@
   color: #000  !important;
 }
 
-footer, footer div { padding: 0 !important;}
+#root footer .footer, footer div { padding: 0 !important;}
+footer .footer {background:rgb(26, 20, 44) !important;}
 
 footer ul li {
   list-style: none !important;
