@@ -10,7 +10,7 @@ const replaceHrefFooter = () => {
   useEffect(() => {
     const links = document.querySelectorAll('footer a');
     const footerDivs = document.querySelectorAll("footer div.container-fluid");
-    footerDivs[0].innerHtml = `
+    footerDivs[0].innerHTML = `
     <div style="background:rgb(26, 20, 44); width: 100%; padding: 40px 24px;">
       <div style="max-width: 1336px; margin: 0 auto;">
         <div style="display: flex; justify-content: space-between;">
