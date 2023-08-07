@@ -163,7 +163,7 @@ function OutlineTab({ intl }) {
                 <div className="col-12 col-md-auto p-0">
                   <IconButton
                     alt={expandAll ? intl.formatMessage(messages.collapseAll) : intl.formatMessage(messages.expandAll)}
-                    icon={expandAll ? faArrowDown : faArrowUp}
+                    icon={expandAll ? faArrowUp : faArrowDown}
                     onClick={() => { setExpandAll(!expandAll); }}
                     size="sm"
                   />
