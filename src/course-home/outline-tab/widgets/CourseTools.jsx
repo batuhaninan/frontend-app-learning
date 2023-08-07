@@ -66,7 +66,7 @@ function CourseTools({ intl }) {
       <h2 className="h4">{intl.formatMessage(messages.tools)}</h2>
       <ul className="list-unstyled">
         {courseTools.map((courseTool) => (
-          courseTool.analyticsId === "edx.bookmarks" && courseTool.analyticsId !== null ? (
+          courseTool.analyticsId === "edx.bookmarks" ? (
             <li key={courseTool.analyticsId} className="small">
               <a href={courseTool.url} onClick={() => logClick(courseTool.analyticsId)}>
                 <FontAwesomeIcon icon={renderIcon(courseTool.analyticsId)} className="mr-2" fixedWidth />
@@ -75,9 +75,6 @@ function CourseTools({ intl }) {
             </li>
           ) : null
         ))}
-        <li className="small" id="courseHome-launchTourLink">
-          <LaunchCourseHomeTourButton />
-        </li>
       </ul>
     </section>
   );
