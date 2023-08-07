@@ -8,6 +8,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Button } from '@edx/paragon';
 import { AlertList } from '../../generic/user-messages';
 import { faCheckCircle as fasCheckCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { Icon, IconButton } from '@edx/paragon';
 
 import CourseDates from './widgets/CourseDates';
 import CourseHandouts from './widgets/CourseHandouts';
