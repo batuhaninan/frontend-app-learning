@@ -69,7 +69,7 @@ function CourseTools({ intl }) {
           <li key={courseTool.analyticsId} className="small">
             <a href={courseTool.url} onClick={() => logClick(courseTool.analyticsId)}>
               <FontAwesomeIcon icon={renderIcon(courseTool.analyticsId)} className="mr-2" fixedWidth />
-              {courseTool.title}
+              {courseTool.title}-{courseTool.analyticsId}
             </a>
           </li>
         ))}
