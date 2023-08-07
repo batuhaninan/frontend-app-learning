@@ -7,6 +7,7 @@ import { history } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Button } from '@edx/paragon';
 import { AlertList } from '../../generic/user-messages';
+import { faCheckCircle as fasCheckCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 import CourseDates from './widgets/CourseDates';
 import CourseHandouts from './widgets/CourseHandouts';
@@ -146,8 +147,8 @@ function OutlineTab({ intl }) {
           />
         </div>
         <div className="col col-12 col-md-8">
-          { /** [MM-P2P] Experiment (the conditional) */ }
-          
+          { /** [MM-P2P] Experiment (the conditional) */}
+
           {isSelfPaced && hasDeadlines && !MMP2P.state.isEnabled && (
             <>
               <ShiftDatesAlert model="outline" fetch={fetchOutlineTab} />
@@ -159,9 +160,12 @@ function OutlineTab({ intl }) {
             <>
               <div className="row w-100 m-0 mb-3 justify-content-end">
                 <div className="col-12 col-md-auto p-0">
-                  <Button variant="outline-primary" block onClick={() => { setExpandAll(!expandAll); }}>
-                    {expandAll ? intl.formatMessage(messages.collapseAll) : intl.formatMessage(messages.expandAll)}
-                  </Button>
+                  <IconButton
+                    alt={expandAll ? intl.formatMessage(messages.collapseAll) : intl.formatMessage(messages.expandAll)}
+                    icon={expandAll ? faArrowDown : faArrowUp}
+                    onClick={() => { setExpandAll(!expandAll); }}
+                    size="sm"
+                  />
                 </div>
               </div>
               <ol id="courseHome-outline" className="list-unstyled">
@@ -190,8 +194,8 @@ function OutlineTab({ intl }) {
               />
             )}
             <CourseTools />
-            { /** [MM-P2P] Experiment (conditional) */ }
-            { MMP2P.state.isEnabled
+            { /** [MM-P2P] Experiment (conditional) */}
+            {MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
               : (
                 <UpgradeNotification
@@ -208,7 +212,7 @@ function OutlineTab({ intl }) {
                   org={org}
                 />
               )}
-           
+
           </div>
         )}
       </div>
