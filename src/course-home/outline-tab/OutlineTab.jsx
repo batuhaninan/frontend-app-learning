@@ -30,6 +30,7 @@ import { useModel } from '../../generic/model-store';
 import WelcomeMessage from './widgets/WelcomeMessage';
 import ProctoringInfoPanel from './widgets/ProctoringInfoPanel';
 import AccountActivationAlert from '../../alerts/logistration-alert/AccountActivationAlert';
+import CourseCompletion from '../progress-tab/course-completion/CourseCompletion';
 
 /** [MM-P2P] Experiment */
 import { initHomeMMP2P, MMP2PFlyover } from '../../experiments/mm-p2p';
@@ -195,6 +196,7 @@ function OutlineTab({ intl }) {
               />
             )}
             <CourseTools />
+            <CourseCompletion />
             { /** [MM-P2P] Experiment (conditional) */}
             {MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
