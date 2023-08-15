@@ -13,7 +13,7 @@ const replaceHrefFooter = () => {
     footerDivs[0].innerHTML = `
     <div style="width: 100%; padding: 40px 24px !important;">
       <div style="max-width: 1336px; margin: 0 auto;">
-        <div style="display: flex; justify-content: space-between;">
+        <div class="footer-elements">
             <div><img src="https://pupilica.com/images/footer-logo.png" alt="Pupilica Footer" /></div>
             <div>
                 <ul>
@@ -35,7 +35,7 @@ const replaceHrefFooter = () => {
             </div>
             <div><img src="https://pupilica.com/images/footer-buttons.png" alt="Pupilica" /></div>
         </div>
-        <div style="display: flex; align-items: center; justify-content: flex-end;padding-block: 24px !important;">  
+        <div style="footer-copyright">  
           <div style="color: rgb(255, 255, 255); font-size: 13px;">Tüm Hakları Saklıdır <span style="color: rgb(189, 225, 41)">Pupilica 2023 </span></div>
         </div>
       </div>
