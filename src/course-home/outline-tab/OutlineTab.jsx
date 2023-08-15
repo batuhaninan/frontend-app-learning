@@ -196,7 +196,6 @@ function OutlineTab({ intl }) {
               />
             )}
             <CourseTools />
-            <CourseCompletion />
             { /** [MM-P2P] Experiment (conditional) */}
             {MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
