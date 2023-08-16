@@ -23,7 +23,7 @@ function CourseTabsNavigation({
         >
 
           {tabs.map(({ url, title, slug }) => (
-            slug !== "discussion" && slug !== "dates" && slug !== "progress" && slug !== "note" &&
+            slug !== "discussion" && slug !== "dates" && slug !== "progress" && slug !== "edxnotes" &&
             <a
               key={slug}
               className={classNames('nav-item flex-shrink-0 nav-link', { active: slug === activeTabSlug })}
@@ -36,7 +36,7 @@ function CourseTabsNavigation({
                         slug === 'instructor' ? 'Eğitmen' :
                           slug === 'comments' ? 'Yorumlar' :
                             slug === 'outline' ? 'Öğrenme Yolculuğu' :
-                              slug
+                              title
               }
 
             </a>
