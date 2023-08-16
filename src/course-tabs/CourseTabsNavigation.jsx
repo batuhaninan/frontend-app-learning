@@ -36,7 +36,7 @@ function CourseTabsNavigation({
                         slug === 'instructor' ? 'Eğitmen' :
                           slug === 'comments' ? 'Yorumlar' :
                             slug === 'outline' ? 'Öğrenme Yolculuğu' :
-                              title - slug
+                              slug
               }
 
             </a>
