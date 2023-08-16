@@ -476,6 +476,7 @@ footer ul li a {
     width: 100% !important;
   }
 }
+.course-wrapper.chromeless{min-height: 300px !important}
 
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";
