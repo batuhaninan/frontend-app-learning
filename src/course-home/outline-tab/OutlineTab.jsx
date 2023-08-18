@@ -195,7 +195,6 @@ function OutlineTab({ intl }) {
                 subscribedToReminders={selectedGoal && 'subscribedToReminders' in selectedGoal ? selectedGoal.subscribedToReminders : false}
               />
             )}
-            <CourseTools />
             { /** [MM-P2P] Experiment (conditional) */}
             {MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
