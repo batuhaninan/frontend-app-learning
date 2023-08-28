@@ -464,6 +464,7 @@ footer ul li a {
     text-align: center !important;
   }
 }
+.course-wrapper.chromeless{min-height: 300px !important}
 
 .comment_wrapper {
   @media (max-width: map-get($grid-breakpoints, "sm")) {
@@ -476,7 +477,6 @@ footer ul li a {
     width: 100% !important;
   }
 }
-.course-wrapper.chromeless{min-height: 300px !important}
 
 // Import component-specific sass files
 @import "courseware/course/celebration/CelebrationModal.scss";

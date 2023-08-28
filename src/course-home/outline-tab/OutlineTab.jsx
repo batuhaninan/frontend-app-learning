@@ -9,13 +9,12 @@ import { Button } from '@edx/paragon';
 import { AlertList } from '../../generic/user-messages';
 import { faCheckCircle as fasCheckCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { Icon, IconButton } from '@edx/paragon';
-
 import CourseDates from './widgets/CourseDates';
 import CourseHandouts from './widgets/CourseHandouts';
 import StartOrResumeCourseCard from './widgets/StartOrResumeCourseCard';
 import WeeklyLearningGoalCard from './widgets/WeeklyLearningGoalCard';
 import CourseTools from './widgets/CourseTools';
-import { fetchOutlineTab } from '../data';
+import { fetchOutlineTab, fetchProgressTab } from '../data';
 import messages from './messages';
 import Section from './Section';
 import ShiftDatesAlert from '../suggested-schedule-messaging/ShiftDatesAlert';
@@ -31,14 +30,19 @@ import WelcomeMessage from './widgets/WelcomeMessage';
 import ProctoringInfoPanel from './widgets/ProctoringInfoPanel';
 import AccountActivationAlert from '../../alerts/logistration-alert/AccountActivationAlert';
 import CourseCompletion from '../progress-tab/course-completion/CourseCompletion';
+import OutlineProgress from './Outlineprogress'
 
 /** [MM-P2P] Experiment */
 import { initHomeMMP2P, MMP2PFlyover } from '../../experiments/mm-p2p';
 
 function OutlineTab({ intl }) {
+
+
+
   const {
     courseId,
     proctoringPanelStatus,
+    targetUserId,
   } = useSelector(state => state.courseHome);
 
   const {
@@ -130,6 +134,7 @@ function OutlineTab({ intl }) {
     }
   }, [location.search]);
 
+
   return (
     <>
       <div data-learner-type={learnerType} className="row w-100 mx-0 my-3 justify-content-between">
@@ -158,6 +163,7 @@ function OutlineTab({ intl }) {
             </>
           )}
           <WelcomeMessage courseId={courseId} />
+          <OutlineProgress courseId={courseId}/>
           {rootCourseId && (
             <>
               <div className="row w-100 m-0 mb-3 justify-content-end">
