@@ -36,10 +36,10 @@ function CatalogSuggestion({ intl, variant }) {
   return (
     <div className="row w-100 mx-0 my-2 justify-content-center" data-testid="catalog-suggestion">
       <div className="col col-md-8 p-4 bg-info-100 text-center">
-        <FontAwesomeIcon icon={faCertificate} style={{ width: '20px' }} />&nbsp;
+        <i data-rating="1" class="smile-icon-star" aria-hidden="true" style={{ width: '20px' }} ></i>&nbsp;
         <FormattedMessage
           id="courseExit.catalogSearchSuggestion"
-          defaultMessage="{downloadCertificateLink} görmeye ne dersin :) ?"
+          defaultMessage="{downloadCertificateLink} görmeye ne dersin? :)"
           values={{ downloadCertificateLink }}
           description="Sertifika"
         />
