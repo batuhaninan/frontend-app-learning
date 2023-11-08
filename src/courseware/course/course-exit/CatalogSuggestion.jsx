@@ -39,7 +39,7 @@ function CatalogSuggestion({ intl, variant }) {
   }, []);
 
   const courseHasCertificate =  async () => {
-    let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/hasCertificate`;
+    let url = `http://local.overhang.io/courses/${courseId}/hasCertificate`;
     const { data } = await getAuthenticatedHttpClient().get(url);
     const result = await data.json();
     return result["has_certificate"]
