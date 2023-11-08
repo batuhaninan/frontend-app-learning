@@ -33,7 +33,7 @@ function UnitNavigation({
       try {
         if (isLastUnit && !progressDataFetched) {
           // Define the URL with the actual courseId
-          const url = `https://courses.pupilica.com/api/course_home/progress/${courseId}`;
+          const url = `http://studio.local.overhang.io/api/course_home/progress/${courseId}`;
 
           // Make the GET request using an asynchronous function
           const response = await getAuthenticatedHttpClient().get(url);
