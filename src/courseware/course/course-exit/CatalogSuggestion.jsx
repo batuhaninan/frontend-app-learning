@@ -29,11 +29,12 @@ function CatalogSuggestion({ intl, variant }) {
   useEffect(() => {
       setLoading(true)
       const fetchData = async () => {
-      const data = await courseHasCertificate();
-      setCertificateEnabled(data)
+        const data = await courseHasCertificate();
+        console.log("data", data)
+        setCertificateEnabled(data)
     }
     fetchData()
-        .then()
+        .then(console.log)
         .catch(console.error)
         .finally(() => setLoading(false));
   }, []);
