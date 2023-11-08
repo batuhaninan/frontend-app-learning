@@ -30,11 +30,10 @@ function CatalogSuggestion({ intl, variant }) {
       setLoading(true)
       const fetchData = async () => {
         const data = await courseHasCertificate();
-        console.log("data", data)
         setCertificateEnabled(data)
     }
     fetchData()
-        .then(console.log)
+        .then()
         .catch(console.error)
         .finally(() => setLoading(false));
   }, []);
@@ -42,8 +41,7 @@ function CatalogSuggestion({ intl, variant }) {
   const courseHasCertificate =  async () => {
     let url = `http://local.overhang.io/courses/${courseId}/hasCertificate`;
     const { data } = await getAuthenticatedHttpClient().get(url);
-    const result = await data.json();
-    return result["has_certificate"]
+    return data["has_certificate"]
   }
 
   const downloadCertificateLink = (
