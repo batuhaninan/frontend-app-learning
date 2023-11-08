@@ -20,7 +20,7 @@ function CatalogSuggestion({ intl, variant }) {
   const { courseId } = useSelector(state => state.courseware);
   const { org } = useModel('courseHomeMeta', courseId);
   const { administrator } = getAuthenticatedUser();
-  const url = `https://courses.pupilica.com/user/certificate/${courseId}`;
+  const url = `http://studio.local.overhang.io/user/certificate/${courseId}`;
 
   const downloadCertificateLink = (
     <Hyperlink
