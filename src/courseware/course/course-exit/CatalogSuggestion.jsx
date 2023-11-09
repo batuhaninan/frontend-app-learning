@@ -23,7 +23,7 @@ function CatalogSuggestion({ intl, variant }) {
   const { courseId } = useSelector(state => state.courseware);
   const { org } = useModel('courseHomeMeta', courseId);
   const { administrator } = getAuthenticatedUser();
-  const url = `http://local.overhang.io/user/certificate/${courseId}`;
+  const url = `${getConfig().LMS_BASE_URL}/user/certificate/${courseId}`;
 
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function CatalogSuggestion({ intl, variant }) {
   }, []);
 
   const courseHasCertificate =  async () => {
-    let url = `http://local.overhang.io/courses/${courseId}/hasCertificate`;
+    let url = `${getConfig().LMS_BASE_URL}/courses/${courseId}/hasCertificate`;
     const { data } = await getAuthenticatedHttpClient().get(url);
     return data["has_certificate"]
   }

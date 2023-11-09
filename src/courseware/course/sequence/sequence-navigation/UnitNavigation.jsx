@@ -14,6 +14,7 @@ import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import UnitNavigationEffortEstimate from './UnitNavigationEffortEstimate';
 import { useSequenceNavigationMetadata } from './hooks';
 import messages from './messages';
+import {getConfig} from "@edx/frontend-platform";
 
 function UnitNavigation({
   intl,
@@ -33,7 +34,7 @@ function UnitNavigation({
       try {
         if (isLastUnit && !progressDataFetched) {
           // Define the URL with the actual courseId
-          const url = `http://local.overhang.io/api/course_home/progress/${courseId}`;
+          const url = `${getConfig().LMS_BASE_URL}/api/course_home/progress/${courseId}`;
 
           // Make the GET request using an asynchronous function
           const response = await getAuthenticatedHttpClient().get(url);

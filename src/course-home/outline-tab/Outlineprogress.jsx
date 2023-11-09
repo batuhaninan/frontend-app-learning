@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useModel } from '../../generic/model-store';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+import {getConfig} from "@edx/frontend-platform";
 
 // Define your new component
 function OutlineProgress({ courseId }) {
@@ -10,7 +11,7 @@ function OutlineProgress({ courseId }) {
         async function fetchData() {
             try {
                 // Define the URL with the actual courseId
-                const url = `http://local.overhang.io/api/course_home/progress/${courseId}`;
+                const url = `${getConfig().LMS_BASE_URL}/api/course_home/progress/${courseId}`;
 
                 // Make the GET request using an asynchronous function
                 const response = await getAuthenticatedHttpClient().get(url);
