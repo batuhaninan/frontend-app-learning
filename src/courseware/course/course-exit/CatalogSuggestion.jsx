@@ -31,7 +31,6 @@ function CatalogSuggestion({ intl, variant }) {
       const fetchData = async () => {
         const data = await courseHasCertificate();
         setCertificateEnabled(data)
-        console.log("isCertificateEnabled", isCertificateEnabled)
     }
     fetchData()
         .then()
