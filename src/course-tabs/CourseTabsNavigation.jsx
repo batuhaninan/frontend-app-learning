@@ -57,6 +57,14 @@ function CourseTabsNavigation({
           >
             Eğitmenler
           </a>
+
+          <a
+            key='progress'
+            className={classNames('nav-item flex-shrink-0 nav-link', { active: 'progress' === activeTabSlug })}
+            href={`/learning/course/${courseId}/progress`}
+          >
+            İlerleme
+          </a>
         </Tabs>
       </div>
     </div>
