@@ -203,7 +203,6 @@ export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
     throw error;
   }
 
-  console.log(datad)
   return normalizeCourseHomeCourseMetadata(datad, rootSlug);
 }
 
