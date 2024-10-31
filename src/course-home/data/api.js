@@ -190,11 +190,11 @@ export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
   let url = `${getConfig().LMS_BASE_URL}/api/course_home/course_metadata/${courseId}`;
   url = appendBrowserTimezoneToUrl(url);
 
-  let data = null;
+  let datad = null;
   
   try {
-    const { datad } = await getAuthenticatedHttpClient().get(url);
-    data = datad;
+    const { data } = await getAuthenticatedHttpClient().get(url);
+    datad = data;
   } catch(error){
     if (error?.customAttributes?.httpErrorStatus === 401) {
       window.location.replace('https://pupilica.com/timeout')
@@ -202,7 +202,8 @@ export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
     throw error;
   }
 
-  return normalizeCourseHomeCourseMetadata(data, rootSlug);
+  console.log(datad)
+  return normalizeCourseHomeCourseMetadata(datad, rootSlug);
 }
 
 // For debugging purposes, you might like to see a fully loaded dates tab.
