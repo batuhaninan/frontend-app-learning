@@ -83,7 +83,16 @@ export async function getSequenceForUnitDeprecated(courseId, unitId) {
 
 export async function getLearningSequencesOutline(courseId) {
   const outlineUrl = new URL(`${getConfig().LMS_BASE_URL}/api/learning_sequences/v1/course_outline/${courseId}`);
-  const { data } = await getAuthenticatedHttpClient().get(outlineUrl.href, {});
+
+  try {
+    const { data } = await getAuthenticatedHttpClient().get(outlineUrl.href, {});
+  } catch(error){
+    if (error?.customAttributes?.httpErrorStatus === 401) {
+      window.location.replace('https://pupilica.com/timeout')
+    }
+    throw error;
+  }
+
   return normalizeLearningSequencesData(data);
 }
 
