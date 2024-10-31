@@ -190,8 +190,11 @@ export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
   let url = `${getConfig().LMS_BASE_URL}/api/course_home/course_metadata/${courseId}`;
   url = appendBrowserTimezoneToUrl(url);
 
+  let data = null;
+  
   try {
-    const { data } = await getAuthenticatedHttpClient().get(url);
+    const { datad } = await getAuthenticatedHttpClient().get(url);
+    data = datad;
   } catch(error){
     if (error?.customAttributes?.httpErrorStatus === 401) {
       window.location.replace('https://pupilica.com/timeout')
