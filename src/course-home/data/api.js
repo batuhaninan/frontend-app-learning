@@ -189,7 +189,16 @@ export function normalizeOutlineBlocks(courseId, blocks) {
 export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
   let url = `${getConfig().LMS_BASE_URL}/api/course_home/course_metadata/${courseId}`;
   url = appendBrowserTimezoneToUrl(url);
-  const { data } = await getAuthenticatedHttpClient().get(url);
+
+  try {
+    const { data } = await getAuthenticatedHttpClient().get(url);
+  } catch(error){
+    if (error?.customAttributes?.httpErrorStatus === 401) {
+      window.location.replace('https://pupilica.com/timeout')
+    }
+    throw error;
+  }
+
   return normalizeCourseHomeCourseMetadata(data, rootSlug);
 }
 
