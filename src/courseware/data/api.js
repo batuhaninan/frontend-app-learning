@@ -91,7 +91,7 @@ export async function getLearningSequencesOutline(courseId) {
     datad = data;
   } catch(error){
     if (error?.customAttributes?.httpErrorStatus === 401) {
-      window.location.replace('https://pupilica.com/timeout')
+      window.location.replace(`${process.env.CMS_URL}/timeout`)
     }
     throw error;
   }
