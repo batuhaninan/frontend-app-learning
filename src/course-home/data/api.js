@@ -197,7 +197,8 @@ export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
     datad = data;
   } catch(error){
     if (error?.customAttributes?.httpErrorStatus === 401) {
-      window.location.replace(`${process.env.CMS_URL}/timeout`)
+      const frontendUrl = (process.env.CMS_URL || 'test').includes('test') ? 'https://test.pupilica.com' : 'https://pupilica.com';
+      window.location.replace(`${frontendUrl}/timeout`)
     }
     throw error;
   }
