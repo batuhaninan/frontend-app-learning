@@ -83,8 +83,21 @@ export async function getSequenceForUnitDeprecated(courseId, unitId) {
 
 export async function getLearningSequencesOutline(courseId) {
   const outlineUrl = new URL(`${getConfig().LMS_BASE_URL}/api/learning_sequences/v1/course_outline/${courseId}`);
-  const { data } = await getAuthenticatedHttpClient().get(outlineUrl.href, {});
-  return normalizeLearningSequencesData(data);
+
+  let datad = null;
+
+  try {
+    const { data } = await getAuthenticatedHttpClient().get(outlineUrl.href, {});
+    datad = data;
+  } catch(error){
+    if (error?.customAttributes?.httpErrorStatus === 401) {
+      const frontendUrl = (process.env.CMS_URL || 'test').includes('test') ? 'https://test.pupilica.com' : 'https://pupilica.com';
+      window.location.replace(`${frontendUrl}/timeout`)
+    }
+    throw error;
+  }
+
+  return normalizeLearningSequencesData(datad);
 }
 
 function normalizeMetadata(metadata) {

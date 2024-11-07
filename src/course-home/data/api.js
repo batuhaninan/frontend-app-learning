@@ -189,8 +189,21 @@ export function normalizeOutlineBlocks(courseId, blocks) {
 export async function getCourseHomeCourseMetadata(courseId, rootSlug) {
   let url = `${getConfig().LMS_BASE_URL}/api/course_home/course_metadata/${courseId}`;
   url = appendBrowserTimezoneToUrl(url);
-  const { data } = await getAuthenticatedHttpClient().get(url);
-  return normalizeCourseHomeCourseMetadata(data, rootSlug);
+
+  let datad = null;
+
+  try {
+    const { data } = await getAuthenticatedHttpClient().get(url);
+    datad = data;
+  } catch(error){
+    if (error?.customAttributes?.httpErrorStatus === 401) {
+      const frontendUrl = (process.env.CMS_URL || 'test').includes('test') ? 'https://test.pupilica.com' : 'https://pupilica.com';
+      window.location.replace(`${frontendUrl}/timeout`)
+    }
+    throw error;
+  }
+
+  return normalizeCourseHomeCourseMetadata(datad, rootSlug);
 }
 
 // For debugging purposes, you might like to see a fully loaded dates tab.
