@@ -19,6 +19,11 @@ function OutlineProgress({ courseId }) {
                 // Set the fetched data in state
                 setProgressData(response.data.completion_summary);
             } catch (error) {
+                if (error?.customAttributes?.httpErrorStatus === 401) {
+                    const frontendUrl = (process.env.CMS_URL || 'test').includes('test') ? 'https://test.pupilica.com' : 'https://pupilica.com';
+                    window.location.replace(`${frontendUrl}/timeout`)
+                    throw error;
+                }
                 console.error('Error fetching data:', error);
             }
         }
